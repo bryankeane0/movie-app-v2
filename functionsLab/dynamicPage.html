@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      let users = [];
+      window.onload = function () {
+        fetch("https://randomuser.me/api/?results=20")
+          .then((response) => {
+            return response.json(); // Get response body stream
+          })
+          .then((responseBody) => {
+            users = responseBody.results;
+            let uL = document.getElementById("user-list");
+            users.forEach((profile) => {
+              let listItem = document.createElement("li");
+              listItem.innerHTML = `${profile.name.title} ${profile.name.first} ${profile.name.last}`;
+              uL.appendChild(listItem);
+            });
+          })
+          .catch(function (err) {
+            console.log(err);
+          });
+      };
+
+      function cleanListElements() {
+        // Remove all li elements from ul list
+        let uL = document.getElementById("user-list");
+        while (uL.lastElementChild) {
+          uL.removeChild(uL.lastElementChild);
+        }
+      }
+
+      function filterUsers() {
+        let element = document.getElementById("string");
+        let searchString = element.value;
+        console.log(searchString);
+        // To be completed
+        cleanListElements();
+        let searchedUsers = [];
+        for (const profile of users) {
+          if (
+            profile.name.first.includes(
+              searchString || profile.name.last.includes(searchString)
+            )
+          ) {
+            let listItem = document.createElement("li");
+            let uL = document.getElementById("user-list");
+            listItem.innerHTML = `${profile.name.title} ${profile.name.first} ${profile.name.last}`;
+            uL.appendChild(listItem);
+          }
+        }
+      }
+    </script>
+  </head>
+  <body>
+    Filter users: <input type="text" id="string" onchange="filterUsers()" />
+    <ul id="user-list"></ul>
+  </body>
+</html>
