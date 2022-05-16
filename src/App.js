@@ -1,25 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Course from "./components/course";
+import "./App.css";
+import witCrest from "./wit_crest.png";
 
-function App() {
+const App = () => {
+  // Substitute your module names here.
+  const modules = [
+    {
+      name: "Web Dev",
+      noLectures: 1,
+      noPracticals: 2,
+    },
+    {
+      name: "Programming",
+      noLectures: 2,
+      noPracticals: 3,
+    },
+    {
+      name: "Database Systems",
+      noLectures: 2,
+      noPracticals: 2,
+    },
+    {
+      name: "DevOps",
+      noLectures: 2,
+      noPracticals: 2,
+    },
+    {
+      name: "Enterprise Web Dev",
+      noLectures: 2,
+      noPracticals: 3,
+    },
+  ];
+  const name = "HDip Computer Systems"; // Substitute
+
   return (
-    <div className="App">
+    <>
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <img className="center" src={witCrest} alt="logo" />
       </header>
-    </div>
+      <div className="course">
+        <Course title={name} modules={modules} />
+      </div>
+    </>
   );
-}
+};
 
 export default App;
