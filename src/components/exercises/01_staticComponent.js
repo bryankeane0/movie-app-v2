@@ -4,7 +4,7 @@ import "../../../node_modules/bootstrap/dist/css/bootstrap.css";
 const Demo = () => {
   return (
     <div>
-      <h2>HDip Computer Science - Modules table</h2>
+      <h2>Applied Computing - Modules table</h2>
       <table className="table table-bordered">
         <thead>
           <tr>
