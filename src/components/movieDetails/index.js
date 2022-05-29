@@ -28,10 +28,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MovieDetails = ( props) => {
+const MovieDetails = (props) => {
   const classes = useStyles();
   const movie = props.movie
-
+  
   return (
     <>
       <Typography variant="h5" component="h3">
@@ -63,6 +63,16 @@ const MovieDetails = ( props) => {
           label={`${movie.vote_average} (${movie.vote_count}`}
         />
         <Chip label={`Released: ${movie.release_date}`} />
+      </Paper>
+      <Paper component="ul" className={classes.root}>
+        <li>
+          <Chip label="Production Countries" className={classes.chip} color="primary" />
+        </li>
+        {movie.production_countries.map((c) => (
+          <li key={c.name}>
+            <Chip label={c.name} className={classes.chip} />
+          </li>
+        ))}
       </Paper>
 
       <Fab
