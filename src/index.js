@@ -8,9 +8,9 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/movies/:id" component={<MoviePage />} />
-        <Route path="/" component={<HomePage />} />
-        <Navigate from="*" to="/" />
+        <Route path="/movies/:id" element={<MoviePage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<Navigate replace to="*" />} />
       </Routes>
     </BrowserRouter>
   );
