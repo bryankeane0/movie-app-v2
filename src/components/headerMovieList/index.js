@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Header = ({ title, history }) => {
+const HeaderMovieList = ({ title, history }) => {
   const classes = useStyles();
   return (
     <Paper component="div" className={classes.root}>
@@ -34,4 +34,4 @@ const Header = ({ title, history }) => {
   );
 };
 
-export default withRouter(Header);
+export default withRouter(HeaderMovieList);
