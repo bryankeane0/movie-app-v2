@@ -1,6 +1,7 @@
 import React from "react";
 import PageTemplate from "../components/templateMoviePage";
 import MovieReview from "../components/movieReview";
+import { withRouter } from "react-router-dom";
 
 const MovieReviewPage = (props) => {
   const {movie, review} = props.location.state
@@ -11,4 +12,4 @@ const MovieReviewPage = (props) => {
   );
 };
 
-export default MovieReviewPage
+export default withRouter(MovieReviewPage);

@@ -2,6 +2,7 @@ import React from "react";
 import MovieDetails from "../components/movieDetails";
 import PageTemplate from "../components/templateMoviePage";
 import useMovie from "../hooks/useMovie";
+import { withRouter } from "react-router-dom";
 
 const MovieDetailsPage = (props) => {
   const { id } = props.match.params;
@@ -22,4 +23,4 @@ const MovieDetailsPage = (props) => {
   );
 };
 
-export default MovieDetailsPage;
+export default withRouter(MovieDetailsPage);

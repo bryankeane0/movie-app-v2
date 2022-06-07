@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Routes , Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Switch , Route } from "react-router-dom";
 import HomePage from "./pages/homePage";
 import MoviePage from "./pages/movieDetailsPage";
 import FavoriteMoviesPage from "./pages/favoriteMoviesPage";
@@ -11,13 +11,12 @@ const App = () => {
   return (
       <BrowserRouter>
         <SiteHeader />   
-        <Routes>
-          <Route exact path="/movies/favorites" element={<FavoriteMoviesPage />} />
-          <Route path="/movies/:id" element={<MoviePage />} />
-          <Route path="/reviews/:id" element={<MovieReviewPage />} />
-          <Route exact path="/" element={<HomePage />} />
-          <Route path="/" element={<Navigate replace to="*" />} />
-        </Routes>
+        <Switch>
+          <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
+          <Route path="/movies/:id" component={MoviePage} />
+          <Route path="/reviews/:id" component={MovieReviewPage} />
+          <Route exact path="/" component={HomePage} />
+        </Switch>
     </BrowserRouter>
   );
 };
