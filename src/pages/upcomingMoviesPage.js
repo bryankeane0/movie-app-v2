@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PageTemplate from '../components/templateMovieListPage'
-import { getMovies, getUpcoming } from "../api/tmdb-api";
+import { getUpcoming } from "../api/tmdb-api";
 
 const UpcomingMoviesPage = (props) => {
   const [movies, setMovies] = useState([]);
