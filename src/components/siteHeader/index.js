@@ -45,10 +45,10 @@ const SiteHeader = ( { history }) => {
             <AppBar position="fixed" color="secondary">
                 <Toolbar>
                     <Typography variant="h4" className={classes.title}>
-                        MOVIEPEDIA
+                        Cinematix
                     </Typography>
                     <Typography variant="h6" className={classes.title}>
-                        All you ever wanted to know about Movies!
+                        A cinema fanatic's favourite site!
                     </Typography>
                     {isMobile ? (
                         <>
@@ -98,7 +98,7 @@ const SiteHeader = ( { history }) => {
                                 </Button>
                             ))}
                         </>
-                    )}
+                    )};
                 </Toolbar>
             </AppBar>
             <div className={classes.offset} />

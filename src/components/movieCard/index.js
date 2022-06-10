@@ -11,7 +11,6 @@ import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import CalendarIcon from "@material-ui/icons/CalendarTodayTwoTone";
 import StarRateIcon from "@material-ui/icons/StarRate";
-import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import img from '../../images/film-poster-placeholder.png';
 import Avatar from "@material-ui/core/Avatar";
@@ -27,18 +26,13 @@ const useStyles = makeStyles({
 
 export default function MovieCard({ movie, action }) {
   const classes = useStyles();
-  const { favorites, addToFavorites } = useContext(MoviesContext);
+  const { favorites } = useContext(MoviesContext);
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
   } else {
     movie.favorite = false
   }
-
-  const handleAddToFavorite = (e) => {
-    e.preventDefault();
-    addToFavorites(movie);
-  };
 
   return (
     <Card className={classes.card}>
@@ -84,9 +78,9 @@ export default function MovieCard({ movie, action }) {
       <CardActions disableSpacing>
         {action(movie)}
         <Link to={`/movies/${movie.id}`}>
-          <Button variant="outlined" size="medium" color="primary">
-            More Info ...
-          </Button>
+            <Button variant="outlined" size="medium" color="primary">
+                More Info ...
+            </Button>
         </Link>
       </CardActions>
     </Card>
