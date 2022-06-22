@@ -30,6 +30,7 @@ const SiteHeader = ( { history }) => {
         { label: "Home", path: "/" },
         { label: "Favorites", path: "/movies/favorites" },
         { label: "Upcoming", path: "/movies/upcoming" },
+        { label: "Must Watch", path: "/movies/mustwatch" }
     ];
 
     const handleMenuSelect = (pageURL) => {
@@ -98,7 +99,7 @@ const SiteHeader = ( { history }) => {
                                 </Button>
                             ))}
                         </>
-                    )};
+                    )}
                 </Toolbar>
             </AppBar>
             <div className={classes.offset} />
