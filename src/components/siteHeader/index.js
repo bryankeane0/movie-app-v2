@@ -30,6 +30,7 @@ const SiteHeader = ( { history }) => {
         { label: "Home", path: "/" },
         { label: "Favorites", path: "/movies/favorites" },
         { label: "Upcoming", path: "/movies/upcoming" },
+        { label: "Must Watch", path: "/movies/mustwatch" }
     ];
 
     const handleMenuSelect = (pageURL) => {
@@ -45,10 +46,10 @@ const SiteHeader = ( { history }) => {
             <AppBar position="fixed" color="secondary">
                 <Toolbar>
                     <Typography variant="h4" className={classes.title}>
-                        MOVIEPEDIA
+                        Cinematix
                     </Typography>
                     <Typography variant="h6" className={classes.title}>
-                        All you ever wanted to know about Movies!
+                        A cinema fanatic's favourite site!
                     </Typography>
                     {isMobile ? (
                         <>

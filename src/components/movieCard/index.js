@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext  } from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -11,10 +11,11 @@ import Typography from "@material-ui/core/Typography";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import CalendarIcon from "@material-ui/icons/CalendarTodayTwoTone";
 import StarRateIcon from "@material-ui/icons/StarRate";
-import IconButton from "@material-ui/core/IconButton";
 import Grid from "@material-ui/core/Grid";
 import img from '../../images/film-poster-placeholder.png';
 import Avatar from "@material-ui/core/Avatar";
+import { MoviesContext } from "../../contexts/moviesContext";
+import AddToMustWatchIcon from "../cardIcons/addToMustWatch";
 
 const useStyles = makeStyles({
   card: { maxWidth: 345 },
@@ -24,15 +25,23 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MovieCard(props) {
+export default function MovieCard({ movie, action }) {
   const classes = useStyles();
-  const movie = props.movie;
-  
-  const handleAddToFavorite = (e) => {
-    e.preventDefault();
-    props.selectFavorite(movie.id);
-  };
+  const { favorites } = useContext(MoviesContext);
+  const { mustwatch } = useContext(MoviesContext);
 
+  if (favorites.find((id) => id === movie.id)) {
+    movie.favorite = true;
+  } else {
+    movie.favorite = false
+  }
+
+  if (mustwatch.find((id) => id === movie.id)) {
+    movie.mustwatch = true;
+  } else {
+    movie.mustwatch = false
+  }
+  
   return (
     <Card className={classes.card}>
       <CardHeader
@@ -41,6 +50,10 @@ export default function MovieCard(props) {
           movie.favorite ? (
             <Avatar className={classes.avatar}>
               <FavoriteIcon />
+            </Avatar>
+          ) : movie.mustwatch ? (
+            <Avatar className={classes.avatar}>
+              <AddToMustWatchIcon />
             </Avatar>
           ) : null
         }
@@ -75,13 +88,11 @@ export default function MovieCard(props) {
         </Grid>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites" onClick={handleAddToFavorite}>
-          <FavoriteIcon color="primary" fontSize="large" />
-        </IconButton>
+        {action(movie)}
         <Link to={`/movies/${movie.id}`}>
-          <Button variant="outlined" size="medium" color="primary">
-            More Info ...
-          </Button>
+            <Button variant="outlined" size="medium" color="primary">
+                More Info ...
+            </Button>
         </Link>
       </CardActions>
     </Card>

@@ -1,32 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import PageTemplate from '../components/templateMovieListPage'
-import { getUpcoming } from "../api/tmdb-api";
+import { getUpcomingMovies } from "../api/tmdb-api";
+import AddToMustWatchIcon from '../components/cardIcons/addToMustWatch';
+import Spinner from '../components/spinner';
+import { useQuery } from 'react-query';
 
 const UpcomingMoviesPage = (props) => {
-  const [movies, setMovies] = useState([]);
-  const favorites = movies.filter(m => m.favorite)
-  localStorage.setItem('favorites', JSON.stringify(favorites))
+  const { data, error, isLoading, isError } = useQuery('upcoming', getUpcomingMovies)
 
-  const addToFavorites = (movieId) => {
-    const updatedMovies = movies.map((m) =>
-      m.id === movieId ? { ...m, favorite: true } : m
-    );
-    setMovies(updatedMovies);
-  };
+  if (isLoading) return <Spinner />
+  if (isError) return <h1>{error.message}</h1>
+  const movies = data.results;
 
-  useEffect(() => {
-    getUpcoming().then(movies => {
-      setMovies(movies);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const mustwatch = movies.filter(m => m.mustwatch)
+  localStorage.setItem('mustwatch', JSON.stringify(mustwatch))
 
   return (
     <PageTemplate
-      title='Upcoming Movies'
+      title="Upcoming Movies"
       movies={movies}
-      selectFavorite={addToFavorites}
+      action={(movie) => {
+        return <AddToMustWatchIcon movie={movie} />
+      }}
     />
-  );
+);
 };
 export default UpcomingMoviesPage;
