@@ -15,7 +15,7 @@ import Grid from "@material-ui/core/Grid";
 import img from '../../images/film-poster-placeholder.png';
 import Avatar from "@material-ui/core/Avatar";
 import { MoviesContext } from "../../contexts/moviesContext";
-import AddToPlaylistIcon from "../cardIcons/addToPlaylist";
+import AddToMustWatchIcon from "../cardIcons/addToMustWatch";
 
 const useStyles = makeStyles({
   card: { maxWidth: 345 },
@@ -28,7 +28,7 @@ const useStyles = makeStyles({
 export default function MovieCard({ movie, action }) {
   const classes = useStyles();
   const { favorites } = useContext(MoviesContext);
-  const { playlist } = useContext(MoviesContext);
+  const { mustwatch } = useContext(MoviesContext);
 
   if (favorites.find((id) => id === movie.id)) {
     movie.favorite = true;
@@ -36,10 +36,10 @@ export default function MovieCard({ movie, action }) {
     movie.favorite = false
   }
 
-  if (playlist.find((id) => id === movie.id)) {
-    movie.playlist = true;
+  if (mustwatch.find((id) => id === movie.id)) {
+    movie.mustwatch = true;
   } else {
-    movie.playlist = false
+    movie.mustwatch = false
   }
   
   return (
@@ -51,9 +51,9 @@ export default function MovieCard({ movie, action }) {
             <Avatar className={classes.avatar}>
               <FavoriteIcon />
             </Avatar>
-          ) : movie.playlist ? (
+          ) : movie.mustwatch ? (
             <Avatar className={classes.avatar}>
-              <AddToPlaylistIcon />
+              <AddToMustWatchIcon />
             </Avatar>
           ) : null
         }

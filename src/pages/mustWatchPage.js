@@ -4,14 +4,14 @@ import { MoviesContext } from "../contexts/moviesContext";
 import { useQueries } from "react-query";
 import { getMovie } from "../api/tmdb-api";
 import Spinner from '../components/spinner';
-import RemoveFromPlaylist from "../components/cardIcons/removeFromPlaylist";
+import RemoveFromMustWatchIcon from "../components/cardIcons/removeFromMustWatch";
 import WriteReview from "../components/cardIcons/writeReview";
 
-const PlaylistPage = () => {
-  const {playlist: movieIds } = useContext(MoviesContext);
+const MustWatchPage = () => {
+  const {mustwatch: movieIds } = useContext(MoviesContext);
 
   // Create an array of queries and run in parallel.
-  const playlistMovieQueries = useQueries(
+  const mustWatchMovieQueries = useQueries(
     movieIds.map((movieId) => {
       return {
         queryKey: ["movie", { id: movieId }],
@@ -20,13 +20,13 @@ const PlaylistPage = () => {
     })
   );
   // Check if any of the parallel queries is still loading.
-  const isLoading = playlistMovieQueries.find((m) => m.isLoading === true);
+  const isLoading = mustWatchMovieQueries.find((m) => m.isLoading === true);
 
   if (isLoading) {
     return <Spinner />;
   }
 
-  const movies = playlistMovieQueries.map((q) => {
+  const movies = mustWatchMovieQueries.map((q) => {
     q.data.genre_ids = q.data.genres.map(g => g.id)
     return q.data
   });
@@ -38,7 +38,7 @@ const PlaylistPage = () => {
       action={(movie) => {
         return (
           <>
-            <RemoveFromPlaylist movie={movie} />
+            <RemoveFromMustWatchIcon movie={movie} />
             <WriteReview movie={movie} />
           </>
         );
@@ -47,4 +47,4 @@ const PlaylistPage = () => {
   );
 };
 
-export default PlaylistPage;
+export default MustWatchPage;

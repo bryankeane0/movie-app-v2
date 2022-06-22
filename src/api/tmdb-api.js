@@ -1,4 +1,4 @@
-export const getMovies = () => {
+export const getMovies = async () => {
   return fetch(
     `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
   ).then((response) => {
@@ -12,7 +12,7 @@ export const getMovies = () => {
   });
 };
 
-export const getMovie = (args) => {
+export const getMovie = async (args) => {
   console.log(args)
   const [, idPart] = args.queryKey;
   const { id } = idPart;
@@ -62,7 +62,7 @@ export const getMovieImages = ({ queryKey }) => {
  });
 };
 
-export const getMovieReviews = (id) => {
+export const getMovieReviews = async (id) => {
     return fetch(
       `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.REACT_APP_TMDB_KEY}`
       ).then( (response) => {
@@ -77,7 +77,7 @@ export const getMovieReviews = (id) => {
      });
   };
 
-export const getUpcomingMovies = () => {
+export const getUpcomingMovies = async () => {
   return fetch(
     `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&page=1`
     ).then( (response) => {
