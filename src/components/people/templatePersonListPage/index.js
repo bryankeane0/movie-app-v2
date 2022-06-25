@@ -18,8 +18,8 @@ function PersonListPageTemplate({ people, title }) {
             <Grid item xs={12}>
                 <Header title={title} />
             </Grid>
-            <Grid item xs={12}>
-                <PeopleList people={people} />
+            <Grid item container spacing={5}>
+                <PeopleList people={people}/>
             </Grid>
         </Grid>
     );

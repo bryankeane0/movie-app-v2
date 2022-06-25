@@ -7,7 +7,7 @@ import { getImages } from "../../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../../spinner';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     root: {
         display: "flex",
         flexWrap: "wrap",
@@ -37,7 +37,7 @@ const TemplatePersonPage = ({ person, children }) => {
                                 <ImageListItem key={image.file_path} className={classes.imageListItem} cols={1}>
                                     <img
                                         src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
-                                        alt={image.poster_path}
+                                        alt={image.profile_path}
                                     />
                                 </ImageListItem>
                             ))}

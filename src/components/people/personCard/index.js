@@ -1,9 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import img from '../../../images/film-poster-placeholder.png';
+import CardContent from "@material-ui/core/CardContent";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import PersonIcon from "@material-ui/icons/Person";
 
 const useStyles = makeStyles({
     card: { maxWidth: 345 },
@@ -21,11 +24,21 @@ export default function PersonCard({ person }) {
             <CardMedia
                 className={classes.media}
                 image={
-                    person.poster_path
-                        ? `https://image.tmdb.org/t/p/w500/${person.poster_path}`
+                    person.profile_path
+                        ? `https://image.tmdb.org/t/p/w500/${person.profile_path}`
                         : img
                 }
             />
+            <CardContent>
+                <Grid container>
+                    <Grid item xs={6}>
+                        <Typography variant="h6" component="p">
+                            <PersonIcon fontSize="small" />
+                            {person.name}
+                        </Typography>
+                    </Grid>
+                </Grid>
+            </CardContent>
         </Card>
     );
 }

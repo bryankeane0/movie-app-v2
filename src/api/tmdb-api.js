@@ -28,10 +28,10 @@ export const getMovie = async (args) => {
 
 export const getPeople = async () => {
   return fetch(
-      `https://api.themoviedb.org/3/person/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
+      `https://api.themoviedb.org/3/person/popular?api_key=${process.env.REACT_APP_TMDB_KEY}`
   ).then((response) => {
     if (!response.ok) {
-      throw new Error(response.json().message);
+      throw new Error(response.json().response);
     }
     return response.json();
   }).catch((error) => {
