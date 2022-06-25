@@ -69,11 +69,11 @@ export const getGenres = async () => {
  });
 };
 
-export const getMovieImages = ({ queryKey, type }) => {
-  const [, idPart] = queryKey;
+export const getImages = async ({ queryKey }) => {
+  const [, idPart, type] = queryKey;
   const { id } = idPart;
   return fetch(
-    `https://api.themoviedb.org/3/movie/${id}/images?api_key=${process.env.REACT_APP_TMDB_KEY}`
+    `https://api.themoviedb.org/3/${type}/${id}/images?api_key=${process.env.REACT_APP_TMDB_KEY}`
   ).then( (response) => {
     if (!response.ok) {
       throw new Error(response.json().message);
