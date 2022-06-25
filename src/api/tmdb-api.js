@@ -6,14 +6,12 @@ export const getMovies = async () => {
       throw new Error(response.json().message);
     }
     return response.json();
-  })
-  .catch((error) => {
+  }).catch((error) => {
      throw error
   });
 };
 
 export const getMovie = async (args) => {
-  console.log(args)
   const [, idPart] = args.queryKey;
   const { id } = idPart;
   return fetch(
@@ -23,10 +21,37 @@ export const getMovie = async (args) => {
       throw new Error(response.json().message);
     }
     return response.json();
-  })
-  .catch((error) => {
+  }).catch((error) => {
     throw error
  });
+};
+
+export const getPeople = async () => {
+  return fetch(
+      `https://api.themoviedb.org/3/person/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  }).catch((error) => {
+    throw error
+  });
+};
+
+export const getPerson = async (args) => {
+  const [, idPart] = args.queryKey;
+  const { id } = idPart;
+  return fetch(
+      `https://api.themoviedb.org/3/person/${id}?api_key=${process.env.REACT_APP_TMDB_KEY}`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  }).catch((error) => {
+    throw error
+  });
 };
 
 export const getGenres = async () => {
@@ -39,13 +64,12 @@ export const getGenres = async () => {
       throw new Error(response.json().message);
     }
     return response.json();
-  })
-  .catch((error) => {
+  }).catch((error) => {
     throw error
  });
 };
 
-export const getMovieImages = ({ queryKey }) => {
+export const getMovieImages = ({ queryKey, type }) => {
   const [, idPart] = queryKey;
   const { id } = idPart;
   return fetch(
@@ -55,9 +79,7 @@ export const getMovieImages = ({ queryKey }) => {
       throw new Error(response.json().message);
     }
     return response.json();
-
-  })
-  .catch((error) => {
+  }).catch((error) => {
     throw error
  });
 };
@@ -70,9 +92,7 @@ export const getMovieReviews = async (id) => {
           throw new Error(response.json().message);
         }
         return response.json();
-    
-      })
-      .catch((error) => {
+      }).catch((error) => {
         throw error
      });
   };
@@ -85,9 +105,7 @@ export const getUpcomingMovies = async () => {
         throw new Error(response.json().message);
       }
       return response.json();
-  
-    })
-    .catch((error) => {
+    }).catch((error) => {
       throw error
     });
 };
