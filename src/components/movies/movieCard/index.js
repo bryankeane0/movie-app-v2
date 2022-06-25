@@ -12,10 +12,10 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import CalendarIcon from "@material-ui/icons/CalendarTodayTwoTone";
 import StarRateIcon from "@material-ui/icons/StarRate";
 import Grid from "@material-ui/core/Grid";
-import img from '../../images/film-poster-placeholder.png';
+import img from '../../../images/film-poster-placeholder.png';
 import Avatar from "@material-ui/core/Avatar";
-import { MoviesContext } from "../../contexts/moviesContext";
-import AddToMustWatchIcon from "../cardIcons/addToMustWatch";
+import { MoviesContext } from "../../../contexts/moviesContext";
+import AddToMustWatchIcon from "../../cardIcons/addToMustWatch";
 
 const useStyles = makeStyles({
   card: { maxWidth: 345 },

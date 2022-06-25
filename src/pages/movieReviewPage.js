@@ -1,6 +1,6 @@
 import React from "react";
-import PageTemplate from "../components/templateMoviePage";
-import MovieReview from "../components/movieReview";
+import PageTemplate from "../components/movies/templateMoviePage";
+import MovieReview from "../components/movies/movieReview";
 import { withRouter } from "react-router-dom";
 
 const MovieReviewPage = (props) => {
