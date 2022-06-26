@@ -1,13 +1,9 @@
 import React, { useState} from "react";
-import Chip from "@material-ui/core/Chip";
-import Paper from "@material-ui/core/Paper";
+import {Fab, Chip, Typography, makeStyles, Drawer, Paper, List} from "@material-ui/core";
 import NavigationIcon from "@material-ui/icons/Navigation";
-import Fab from "@material-ui/core/Fab";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import {useQuery} from "react-query";
-import {getMovieCredits} from "../../../api/tmdb-api";
+import { useQuery } from "react-query";
+import { getMovieCredits } from "../../../api/tmdb-api";
+import PersonMovieCredits from "../personMovieCredits";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
         bottom: theme.spacing(2),
         right: theme.spacing(2),
     },
+    boldText: {
+        fontWeight: "bold"
+    }
 }));
 
 const PersonDetails = ({ person }) => {
@@ -33,22 +32,27 @@ const PersonDetails = ({ person }) => {
     const [drawerOpen, setDrawerOpen] = useState(false);
     const { data } = useQuery(["person", { id: person.id }], getMovieCredits);
     console.log(data)
+
     return (
         <>
-            <Typography variant="h5" component="h3">
-                Overview
+            <Typography variant="h5" component="h3" className={classes.boldText}>
+                Biography
             </Typography>
-
+            <br/>
             <Typography variant="h6" component="p">
                 {person.biography}
+            </Typography>
+            <br/>
+            <Typography variant="h5" component="h3" className={classes.boldText}>
+                Movie Credits
             </Typography>
 
             <Paper component="ul" className={classes.root}>
                 <li>
                     <Chip label="Movie Credits" className={classes.chip} color="primary" />
                 </li>
-            {/*  TODO: Implement movie credits of some sort  */}
             </Paper>
+            <List component={PersonMovieCredits} direction="row" />
             <Fab
                 color="secondary"
                 variant="extended"

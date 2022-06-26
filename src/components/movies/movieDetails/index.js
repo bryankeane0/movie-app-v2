@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
     bottom: theme.spacing(2),
     right: theme.spacing(2),
   },
+    boldText: {
+        fontWeight: "bold"
+    }
 }));
 
 const MovieDetails = ({ movie }) => {
@@ -36,10 +39,10 @@ const MovieDetails = ({ movie }) => {
 
   return (
     <>
-      <Typography variant="h5" component="h3">
+      <Typography variant="h5" component="h3" className={classes.boldText}>
         Overview
       </Typography>
-
+      <br/>
       <Typography variant="h6" component="p">
         {movie.overview}
       </Typography>
@@ -93,4 +96,4 @@ const MovieDetails = ({ movie }) => {
   );
 };
 
-export default  MovieDetails ;
+export default MovieDetails ;

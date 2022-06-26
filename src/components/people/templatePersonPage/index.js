@@ -6,6 +6,7 @@ import ImageListItem from "@material-ui/core/ImageListItem";
 import { getImages } from "../../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../../spinner';
+import PersonHeader from "../headerPerson";
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -29,6 +30,8 @@ const TemplatePersonPage = ({ person, children }) => {
 
     return (
         <>
+            <PersonHeader person={person} />
+
             <Grid container spacing={5} style={{ padding: "15px" }}>
                 <Grid item xs={3}>
                     <div className={classes.root}>
