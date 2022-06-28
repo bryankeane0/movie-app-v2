@@ -1,9 +1,6 @@
 import React, { useState} from "react";
-import {Fab, Chip, Typography, makeStyles, Drawer, Paper, List} from "@material-ui/core";
+import {Fab, Chip, Typography, makeStyles, Drawer, Paper} from "@material-ui/core";
 import NavigationIcon from "@material-ui/icons/Navigation";
-import { useQuery } from "react-query";
-import { getMovieCredits } from "../../../api/tmdb-api";
-import PersonMovieCredits from "../personMovieCredits";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,9 +27,6 @@ const useStyles = makeStyles((theme) => ({
 const PersonDetails = ({ person }) => {
     const classes = useStyles();
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const { data } = useQuery(["person", { id: person.id }], getMovieCredits);
-    console.log(data)
-
     return (
         <>
             <Typography variant="h5" component="h3" className={classes.boldText}>
@@ -52,7 +46,6 @@ const PersonDetails = ({ person }) => {
                     <Chip label="Movie Credits" className={classes.chip} color="primary" />
                 </li>
             </Paper>
-            <List component={PersonMovieCredits} direction="row" />
             <Fab
                 color="secondary"
                 variant="extended"
