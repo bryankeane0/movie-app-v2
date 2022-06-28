@@ -21,8 +21,8 @@ Describe what needs to be on the machine to run the API (Node v?, NPM, MongoDB i
 
 Describe getting/installing the software, perhaps:
 
-```bat
-git clone http:\myrepo.git
+```
+git clone https://github.com/bryankeane0/movie-app-v2.git OR git@github.com:bryankeane0/movie-app-v2.git
 ```
 
 followed by installation
