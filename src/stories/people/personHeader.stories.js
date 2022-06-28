@@ -4,7 +4,7 @@ import SamplePerson from "./samplePersonData";
 import { MemoryRouter } from "react-router";
 
 export default {
-    title: "Person/PersonHeader",
+    title: "People/PersonHeader",
     component: PersonHeader,
     decorators: [
         (Story) => <MemoryRouter initialEntries={["/"]}>{Story()}</MemoryRouter>,
