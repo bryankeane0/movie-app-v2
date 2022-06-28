@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/movie-app-v2/static/js/main.c5f4334e.js",
+    "main.js": "/movie-app-v2/static/js/main.a07d27d7.js",
     "static/media/pexels-dziana-hasanbekava-5480827.jpg": "/movie-app-v2/static/media/pexels-dziana-hasanbekava-5480827.6123c500508cea5447e7.jpg",
     "static/media/film-poster-placeholder.png": "/movie-app-v2/static/media/film-poster-placeholder.9a8182eb4c8ae70fe602.png",
     "index.html": "/movie-app-v2/index.html",
-    "main.c5f4334e.js.map": "/movie-app-v2/static/js/main.c5f4334e.js.map"
+    "main.a07d27d7.js.map": "/movie-app-v2/static/js/main.a07d27d7.js.map"
   },
   "entrypoints": [
-    "static/js/main.c5f4334e.js"
+    "static/js/main.a07d27d7.js"
   ]
 }
