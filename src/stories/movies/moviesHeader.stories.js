@@ -1,10 +1,10 @@
 import React from "react";
-import MoviesHeader from "../components/movies/headerMovieList";
+import MoviesHeader from "../../components/movies/headerMovieList";
 import { MemoryRouter } from "react-router";
-import MoviesContextProvider from "../contexts/moviesContext";
+import MoviesContextProvider from "../../contexts/moviesContext";
 
 export default {
-  title: "Home Page/MoviePageHeader",
+  title: "Movies/MoviePageHeader",
   component: MoviesHeader,
   decorators: [
     (Story) => <MemoryRouter initialEntries={["/"]}>{Story()}</MemoryRouter>,
