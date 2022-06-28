@@ -2,7 +2,7 @@
 name: Improvement
 about: Suggest a change
 title: "[IMPROVEMENT]"
-labels: enhancement
+labels: improvement
 assignees: bryankeane0
 
 ---
