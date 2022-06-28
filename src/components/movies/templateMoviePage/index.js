@@ -4,7 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import ImageList from "@material-ui/core/ImageList";
 import ImageListItem from "@material-ui/core/ImageListItem";
-import { getMovieImages } from "../../../api/tmdb-api";
+import { getImages } from "../../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../../spinner';
 
@@ -22,10 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 const TemplateMoviePage = ({ movie, children }) => {
   const classes = useStyles();
-  const { data , error, isLoading, isError } = useQuery(
-    ["images", { id: movie.id }],
-    getMovieImages
-  );
+  const { data , error, isLoading, isError } = useQuery(["images", { id: movie.id }, "movie"], getImages);
 
   if (isLoading) {
     return <Spinner />;
