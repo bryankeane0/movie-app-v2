@@ -9,6 +9,8 @@ import Typography from "@material-ui/core/Typography";
 import PersonIcon from "@material-ui/icons/Person";
 import {Link} from "react-router-dom";
 import {CardActionArea} from "@material-ui/core";
+import {Tooltip} from "@material-ui/core";
+import {Zoom} from "@material-ui/core";
 
 const useStyles = makeStyles({
     card: { maxWidth: 345 },
@@ -26,29 +28,31 @@ export default function PersonCard({ person }) {
     const classes = useStyles();
 
     return (
-        <Link to={`/person/${person.id}`}>
-            <Card className={classes.card} >
-                <CardActionArea>
-                    <CardMedia
-                        className={classes.media}
-                        image={
-                            person.profile_path
-                                ? `https://image.tmdb.org/t/p/w500/${person.profile_path}`
-                                : img
-                        }
-                    />
-                    <CardContent>
-                        <Grid container>
-                            <Grid item xs={6}>
-                                <Typography variant="h6" component="p">
-                                    <PersonIcon fontSize="small" />
-                                    {person.name}
-                                </Typography>
+        <Tooltip TransitionComponent={Zoom} title={`${person.name} Details`}>
+           <Link to={`/person/${person.id}`}>
+                <Card className={classes.card} >
+                    <CardActionArea>
+                        <CardMedia
+                            className={classes.media}
+                            image={
+                                person.profile_path
+                                    ? `https://image.tmdb.org/t/p/w500/${person.profile_path}`
+                                    : img
+                            }
+                        />
+                        <CardContent>
+                            <Grid container>
+                                <Grid item xs={6}>
+                                    <Typography variant="h6" component="p">
+                                        <PersonIcon fontSize="small" />
+                                        {person.name}
+                                    </Typography>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </CardContent>
-                </CardActionArea>
-            </Card>
-        </Link>
+                        </CardContent>
+                    </CardActionArea>
+                </Card>
+            </Link>
+        </Tooltip>
     );
 }

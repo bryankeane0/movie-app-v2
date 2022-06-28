@@ -43,7 +43,7 @@ const PersonDetails = ({ person }) => {
 
             <Paper component="ul" className={classes.root}>
                 <li>
-                    <Chip label="Movie Credits" className={classes.chip} color="primary" />
+                    <Chip label="TODO" className={classes.chip} color="primary" />
                 </li>
             </Paper>
             <Fab

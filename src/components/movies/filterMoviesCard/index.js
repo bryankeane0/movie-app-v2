@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FilterMoviesCard(props) {
+const FilterMoviesCard = (props) => {
   const classes = useStyles();
   const { data, error, isLoading, isError } = useQuery("genres", getGenres);
 
@@ -107,3 +107,5 @@ export default function FilterMoviesCard(props) {
     </Card>
   );
 }
+
+export default FilterMoviesCard;

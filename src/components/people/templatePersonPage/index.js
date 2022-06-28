@@ -1,12 +1,12 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import ImageList from "@material-ui/core/ImageList";
-import ImageListItem from "@material-ui/core/ImageListItem";
-import { getImages } from "../../../api/tmdb-api";
-import { useQuery } from "react-query";
-import Spinner from '../../spinner';
+import Img from "../../../images/person-poster-placeholder.jpg";
 import PersonHeader from "../headerPerson";
+import Card from "@material-ui/core/Card";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import TextInfoContent from '@mui-treasury/components/content/textInfo';
 
 const useStyles = makeStyles(() => ({
     root: {
@@ -14,19 +14,10 @@ const useStyles = makeStyles(() => ({
         flexWrap: "wrap",
         justifyContent: "space-around",
     },
-    imageList: {
-        width: 450,
-        height: '100vh',
-    },
 }));
 
 const TemplatePersonPage = ({ person, children }) => {
     const classes = useStyles();
-    const { data , error, isLoading, isError } = useQuery(["images", { id: person.id }, "person"], getImages);
-
-    if (isLoading) return <Spinner />;
-    if (isError) return <h1>{error.message}</h1>;
-    const images = data.profiles
 
     return (
         <>
@@ -35,16 +26,42 @@ const TemplatePersonPage = ({ person, children }) => {
             <Grid container spacing={5} style={{ padding: "15px" }}>
                 <Grid item xs={3}>
                     <div className={classes.root}>
-                        <ImageList rowHeight={500} className={classes.imageList} cols={1}>
-                            {images.map((image) => (
-                                <ImageListItem key={image.file_path} className={classes.imageListItem} cols={1}>
-                                    <img
-                                        src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
-                                        alt={image.profile_path}
-                                    />
-                                </ImageListItem>
-                            ))}
-                        </ImageList>
+                        <Card>
+                            <CardMedia>
+                                <img
+                                    width={"100%"}
+                                    src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
+                                    alt={Img}
+
+                                />
+                            </CardMedia>
+                            <CardContent>
+                                <TextInfoContent
+                                    heading={"Known For"}
+                                    body={person.known_for_department}
+                                />
+                                <TextInfoContent
+                                    heading={"Gender"}
+                                    body={
+                                        person.gender === 1 ? "Female"
+                                        : person.gender === 2 ? "Male"
+                                        : "Other"
+                                    }
+                                />
+                                <TextInfoContent
+                                    heading={"Birthdate"}
+                                    body={person.birthday}
+                                />
+                                <TextInfoContent
+                                    heading={"Place of Birth"}
+                                    body={person.place_of_birth}
+                                />
+                                <TextInfoContent
+                                    heading={"Also Known As"}
+                                    body={person.also_known_as.map((item) => item).join(', ')}
+                                />
+                            </CardContent>
+                        </Card>
                     </div>
                 </Grid>
                 <Grid item xs={9}>

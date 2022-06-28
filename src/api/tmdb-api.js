@@ -74,7 +74,7 @@ export const getMovieCredits = async (args) => {
 
 export const getGenres = async () => {
   return fetch(
-    `${API_URL}/genre/movie/list?${API_KEY}=${API_KEY}&language=en-US`
+    `${API_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`
   ).then( (response) => {
     if (!response.ok) {
       throw new Error(response.json().message);
