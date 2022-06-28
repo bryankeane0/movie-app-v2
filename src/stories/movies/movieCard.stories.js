@@ -1,13 +1,13 @@
 import React from "react";
-import MovieCard from "../components/movies/movieCard";
-import SampleMovie from "./sampleData";
+import MovieCard from "../../components/movies/movieCard";
+import SampleMovie from "./sampleMovieData";
 import { MemoryRouter } from "react-router";
-import MoviesContextProvider from "../contexts/moviesContext";
+import MoviesContextProvider from "../../contexts/moviesContext";
 import { action } from "@storybook/addon-actions";
-import AddToFavoritesIcon from "../components/cardIcons/addToFavorites";
+import AddToFavoritesIcon from "../../components/cardIcons/addToFavorites";
 
 export default {
-  title: "Home Page/MovieCard",
+  title: "Movies/MovieCard",
   component: MovieCard,
   decorators: [
     (Story) => <MemoryRouter initialEntries={["/"]}>{Story()}</MemoryRouter>,

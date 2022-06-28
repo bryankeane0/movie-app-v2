@@ -1,5 +1,5 @@
 import React from "react";
-import FilterMoviesCard from "../components/movies/filterMoviesCard";
+import FilterMoviesCard from "../../components/movies/filterMoviesCard";
 import { MemoryRouter } from "react-router";
 import { action } from "@storybook/addon-actions";
 import { QueryClientProvider, QueryClient } from "react-query";
@@ -15,7 +15,7 @@ const queryClient = new QueryClient({
 });
 
 export default {
-  title: "Home Page/FilterMoviesCard",
+  title: "Movies/FilterMoviesCard",
   component: FilterMoviesCard,
   decorators: [
     (Story) => <MemoryRouter initialEntries={["/"]}>{Story()}</MemoryRouter>,
