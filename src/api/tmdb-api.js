@@ -1,9 +1,9 @@
 export const API_URL="https://api.themoviedb.org/3";
 export const API_KEY=process.env.REACT_APP_TMDB_KEY;
 
-export const getMovies = async () => {
+export const getMovies = () => {
   return fetch(
-    `${API_URL}/discover/movie?api_key=${API_KEY}&language=en-US&include_adult=false&include_video=false&page=1`
+    `${API_URL}/discover/movie?api_key=${API_KEY}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(response.json().message);
@@ -27,6 +27,34 @@ export const getMovie = async (args) => {
   }).catch((error) => {
     throw error
  });
+};
+
+export const getTvShows = async () => {
+  return fetch(
+      `${API_URL}/discover/tv?api_key=${API_KEY}`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  }).catch((error) => {
+    throw error
+  });
+};
+
+export const getTvShow = async (args) => {
+  const [, idPart] = args.queryKey;
+  const { id } = idPart;
+  return fetch(
+      `${API_URL}/tv/${id}?api_key=${API_KEY}`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  }).catch((error) => {
+    throw error
+  });
 };
 
 export const getPeople = async () => {
