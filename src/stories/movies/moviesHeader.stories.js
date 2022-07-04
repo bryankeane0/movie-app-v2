@@ -1,14 +1,14 @@
 import React from "react";
 import MoviesHeader from "../../components/movies/headerMovieList";
 import { MemoryRouter } from "react-router";
-import MoviesContextProvider from "../../contexts/moviesContext";
+import CustomContextProvider from "../../contexts/customContext";
 
 export default {
   title: "Movies/MoviePageHeader",
   component: MoviesHeader,
   decorators: [
     (Story) => <MemoryRouter initialEntries={["/"]}>{Story()}</MemoryRouter>,
-    (Story) => <MoviesContextProvider>{Story()}</MoviesContextProvider>,
+    (Story) => <CustomContextProvider>{Story()}</CustomContextProvider>,
   ],
 };
 

@@ -14,8 +14,7 @@ import StarRateIcon from "@material-ui/icons/StarRate";
 import Grid from "@material-ui/core/Grid";
 import img from '../../../images/film-poster-placeholder.png';
 import Avatar from "@material-ui/core/Avatar";
-import ShowContext from "../../../contexts/showContext";
-import AddToMustWatchIcon from "../../cardIcons/addToMustWatch";
+import { CustomContext } from "../../../contexts/customContext";
 
 const useStyles = makeStyles({
   card: { maxWidth: 345 },
@@ -27,11 +26,8 @@ const useStyles = makeStyles({
 
 export default function TvShowCard({ tvshow, action }) {
   const classes = useStyles();
-  const { favorites } = useContext(ShowContext);
-  const { mustwatch } = useContext(ShowContext);
-
+  const { favorites } = useContext(CustomContext);
   tvshow.favorite = !!favorites.find((id) => id === tvshow.id);
-  tvshow.mustwatch = !!mustwatch.find((id) => id === tvshow.id);
 
   return (
     <Card className={classes.card}>
@@ -41,10 +37,6 @@ export default function TvShowCard({ tvshow, action }) {
           tvshow.favorite ? (
             <Avatar className={classes.avatar}>
               <FavoriteIcon />
-            </Avatar>
-          ) : tvshow.mustwatch ? (
-            <Avatar className={classes.avatar}>
-              <AddToMustWatchIcon />
             </Avatar>
           ) : null
         }

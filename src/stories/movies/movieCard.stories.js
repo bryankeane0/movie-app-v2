@@ -2,7 +2,7 @@ import React from "react";
 import MovieCard from "../../components/movies/movieCard";
 import SampleMovie from "./sampleMovieData";
 import { MemoryRouter } from "react-router";
-import MoviesContextProvider from "../../contexts/moviesContext";
+import CustomContextProvider from "../../contexts/customContext";
 import { action } from "@storybook/addon-actions";
 import AddToFavoritesIcon from "../../components/cardIcons/addToFavorites";
 
@@ -11,7 +11,7 @@ export default {
   component: MovieCard,
   decorators: [
     (Story) => <MemoryRouter initialEntries={["/"]}>{Story()}</MemoryRouter>,
-    (Story) => <MoviesContextProvider>{Story()}</MoviesContextProvider>,
+    (Story) => <CustomContextProvider>{Story()}</CustomContextProvider>,
   ],
 };
 

@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const TvShowHeader = ({ TvShow, history}) => {
+const TvShowHeader = ({ tvshow, history}) => {
   const classes = useStyles();
 
   return (

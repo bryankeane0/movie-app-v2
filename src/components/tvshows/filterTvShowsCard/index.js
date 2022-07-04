@@ -11,7 +11,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import img from '../../../images/pexels-dziana-hasanbekava-5480827.jpg';
-import { getGenres } from "../../../api/tmdb-api";
+import { getTvShowGenres } from "../../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../../spinner';
 
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
 const FilterTvShowsCard = (props) => {
   const classes = useStyles();
-  const { data, error, isLoading, isError } = useQuery("genres", getGenres);
+  const { data, error, isLoading, isError } = useQuery("genres", getTvShowGenres);
 
   if (isLoading) {
     return <Spinner />;
@@ -63,7 +63,7 @@ const FilterTvShowsCard = (props) => {
       <CardContent>
         <Typography variant="h5" component="h1">
           <SearchIcon fontSize="large" />
-          Filter the tv showss.
+          Filter TV Shows
         </Typography>
         <TextField
           className={classes.formControl}
@@ -100,7 +100,7 @@ const FilterTvShowsCard = (props) => {
       <CardContent>
         <Typography variant="h5" component="h1">
           <SearchIcon fontSize="large" />
-          Filter the tv showss.
+          Filter TV Shows
           <br />
         </Typography>
       </CardContent>

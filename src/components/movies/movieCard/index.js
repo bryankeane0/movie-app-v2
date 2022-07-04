@@ -14,7 +14,7 @@ import StarRateIcon from "@material-ui/icons/StarRate";
 import Grid from "@material-ui/core/Grid";
 import img from '../../../images/film-poster-placeholder.png';
 import Avatar from "@material-ui/core/Avatar";
-import { MoviesContext } from "../../../contexts/moviesContext";
+import { CustomContext } from "../../../contexts/customContext";
 import AddToMustWatchIcon from "../../cardIcons/addToMustWatch";
 
 const useStyles = makeStyles({
@@ -27,20 +27,11 @@ const useStyles = makeStyles({
 
 export default function MovieCard({ movie, action }) {
   const classes = useStyles();
-  const { favorites } = useContext(MoviesContext);
-  const { mustwatch } = useContext(MoviesContext);
+  const { favorites } = useContext(CustomContext);
+  const { mustwatch } = useContext(CustomContext);
 
-  if (favorites.find((id) => id === movie.id)) {
-    movie.favorite = true;
-  } else {
-    movie.favorite = false
-  }
-
-  if (mustwatch.find((id) => id === movie.id)) {
-    movie.mustwatch = true;
-  } else {
-    movie.mustwatch = false
-  }
+  movie.favorite = !!favorites.find((id) => id === movie.id);
+  movie.mustwatch = !!mustwatch.find((id) => id === movie.id);
   
   return (
     <Card className={classes.card}>

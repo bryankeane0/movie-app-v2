@@ -5,14 +5,14 @@ import { MemoryRouter } from "react-router";
 import { action } from "@storybook/addon-actions";
 import AddToFavoritesIcon from "../../components/cardIcons/addToFavorites";
 import Grid from "@material-ui/core/Grid";
-import MoviesContextProvider from "../../contexts/moviesContext";
+import CustomContextProvider from "../../contexts/customContext";
 
 export default {
   title: "Movies/MovieList",
   component: MovieList,
   decorators: [
     (Story) => <MemoryRouter initialEntries={["/"]}>{Story()}</MemoryRouter>,
-    (Story) => <MoviesContextProvider>{Story()}</MoviesContextProvider>,
+    (Story) => <CustomContextProvider>{Story()}</CustomContextProvider>,
   ],
 };
 

@@ -1,38 +1,38 @@
 import React, {useState} from "react";
 
-export const TvShowContext = React.createContext(null);
+export const CustomContext = React.createContext(null);
 
-const TvShowContextProvider = (props) => {
+const CustomContextProvider = (props) => {
     const [myReviews, setMyReviews] = useState({})
     const [favorites, setFavorites] = useState([])
     const [mustwatch, setMustWatch] = useState([])
 
-    const addToFavorites = (tvshow) => {
-        setFavorites([...favorites, tvshow.id])
+    const addToFavorites = (item) => {
+        setFavorites([...favorites, item.id])
     };
 
-    const removeFromFavorites = (tvshow) => {
+    const removeFromFavorites = (item) => {
         setFavorites(favorites.filter(
-            (sId) => sId !== tvshow.id
+            (itemId) => itemId !== item.id
         ))
     };
 
-    const addToMustWatch = (tvshow) => {
-        setMustWatch([...mustwatch, tvshow.id])
+    const addToMustWatch = (item) => {
+        setMustWatch([...mustwatch, item.id])
     };
 
-    const removeFromMustWatch = (tvshow) => {
+    const removeFromMustWatch = (item) => {
         setMustWatch(mustwatch.filter(
-            (sId) => sId !== tvshow.id
+            (itemId) => itemId !== item.id
         ))
     };
 
-    const addReview = (tvshow, review) => {
-        setMyReviews({...myReviews, [tvshow.id]: review})
+    const addReview = (item, review) => {
+        setMyReviews({...myReviews, [item.id]: review})
     };
 
     return (
-        <TvShowContext.Provider
+        <CustomContext.Provider
             value={{
                 favorites,
                 addToFavorites,
@@ -44,8 +44,8 @@ const TvShowContextProvider = (props) => {
             }}
         >
             {props.children}
-        </TvShowContext.Provider>
+        </CustomContext.Provider>
     );
 };
 
-export default TvShowContextProvider;
+export default CustomContextProvider;
