@@ -26,12 +26,18 @@ const SiteHeader = ( { history }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
+    const newMenuOptions = [
+        { label: "Movies", path: "/" },
+        { label: "Popular Actors", path: "/actor/popular" },
+        { label: "Discover TV Shows", path: "/tv/discover" }
+    ]
+
     const menuOptions = [
         { label: "Discover Movies", path: "/" },
         { label: "Favorites", path: "/movies/favorites" },
         { label: "Upcoming", path: "/movies/upcoming" },
         { label: "Must Watch", path: "/movies/mustwatch" },
-        { label: "Popular People", path: "/person/popular" },
+        { label: "Popular Actors", path: "/actor/popular" },
         { label: "Discover TV Shows", path: "/tv/discover" }
 
     ];

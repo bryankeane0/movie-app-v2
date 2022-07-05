@@ -1,16 +1,16 @@
 import React from "react";
-import PersonHeader from "../../components/people/headerPerson";
-import SamplePerson from "./samplePersonData";
+import ActorHeader from "../../components/actors/headerActor";
+import SampleActor from "./sampleActorData";
 import { MemoryRouter } from "react-router";
 
 export default {
-    title: "People/PersonHeader",
-    component: PersonHeader,
+    title: "Actors/ActorHeader",
+    component: ActorHeader,
     decorators: [
         (Story) => <MemoryRouter initialEntries={["/"]}>{Story()}</MemoryRouter>,
     ],
 };
 
-export const Basic = () => <PersonHeader person={SamplePerson} />;
+export const Basic = () => <ActorHeader actor={SampleActor} />;
 
 Basic.storyName = "Default";

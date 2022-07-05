@@ -11,8 +11,8 @@ import { QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from 'react-query/devtools';
 import AddMovieReviewPage from './pages/addMovieReviewPage';
 import MustWatchPage from "./pages/mustWatchPage";
-import PopularPeoplePage from "./pages/popularPeoplePage";
-import PersonDetailsPage from "./pages/personDetailsPage";
+import PopularActorsPage from "./pages/popularActorsPage";
+import ActorDetailsPage from "./pages/actorDetailsPage";
 import DiscoverTvShowsPage from "./pages/discoverTvShowsPage";
 import TvShowDetailsPage from "./pages/tvShowDetailsPage";
 import CustomContextProvider from "./contexts/customContext";
@@ -35,13 +35,13 @@ const App = () => {
          <CustomContextProvider>
             {" "}
             <Switch>
-              <Route exact path="/person/popular" component={PopularPeoplePage} />
+              <Route exact path="/actor/popular" component={PopularActorsPage} />
               <Route exact path="/reviews/form" component={AddMovieReviewPage} />
               <Route exact path="/movies/upcoming" component={UpcomingMoviesPage}/>
               <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
               <Route exact path="/movies/mustwatch" component={MustWatchPage} />
               <Route exact path="/tv/discover" component={DiscoverTvShowsPage} />
-              <Route path="/person/:id" component={PersonDetailsPage} />
+              <Route path="/actor/:id" component={ActorDetailsPage} />
               <Route path="/movies/:id" component={MoviePage} />
               <Route path="/reviews/:id" component={MovieReviewPage} />
               <Route path="/tv/:id" component={TvShowDetailsPage} />

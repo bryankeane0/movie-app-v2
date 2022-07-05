@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const PersonDetails = ({ person }) => {
+const ActorDetails = ({ actor }) => {
     const classes = useStyles();
     return (
         <>
@@ -32,7 +32,7 @@ const PersonDetails = ({ person }) => {
             </Typography>
             <br/>
             <Typography variant="h6" component="p">
-                {person.biography}
+                {actor.biography}
             </Typography>
             <br/>
             <Typography variant="h5" component="h3" className={classes.boldText}>
@@ -48,4 +48,4 @@ const PersonDetails = ({ person }) => {
     );
 };
 
-export default PersonDetails;
+export default ActorDetails;

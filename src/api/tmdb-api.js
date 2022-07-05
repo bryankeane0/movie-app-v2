@@ -57,7 +57,7 @@ export const getTvShow = async (args) => {
   });
 };
 
-export const getPeople = async () => {
+export const getActors = async () => {
   return fetch(
       `${API_URL}/person/popular?api_key=${API_KEY}`
   ).then((response) => {
@@ -70,7 +70,7 @@ export const getPeople = async () => {
   });
 };
 
-export const getPerson = (args) => {
+export const getActor = (args) => {
   const [, idPart] = args.queryKey;
   const { id } = idPart;
   return fetch(
