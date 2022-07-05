@@ -6,12 +6,11 @@ import {getTvShows} from '../api/tmdb-api';
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites';
 
 const DiscoverTvShowsPage = (props) => {
-    const { data, error, isLoading, isError }  = useQuery('discover', getTvShows)
+    const { data, error, isLoading, isError }  = useQuery('discovertv', getTvShows)
 
     if (isLoading) return <Spinner />
     if (isError) return <h1>{error.message}</h1>
     const tvshows = data.results;
-    console.log(tvshows)
 
     const favorites = tvshows.filter(m => m.favorite)
     localStorage.setItem('favorites', JSON.stringify(favorites))

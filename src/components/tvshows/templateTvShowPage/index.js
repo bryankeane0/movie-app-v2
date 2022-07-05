@@ -1,5 +1,5 @@
-import React from "react";  // useState/useEffect redundant 
-import TvShowHeader from "../headerTvShow";
+import React from "react";
+import TvShowHeader from "../headerTvShows";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import ImageList from "@material-ui/core/ImageList";
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 const TemplateTvShowPage = ({ tvshow, children }) => {
   const classes = useStyles();
-  const { data , error, isLoading, isError } = useQuery(["images", { id: tvshow.id }, "tvshow"], getImages);
+  const { data , error, isLoading, isError } = useQuery(["tvShowImages", { id: tvshow.id }, "tv"], getImages);
 
   if (isLoading) {
     return <Spinner />;

@@ -14,6 +14,7 @@ import MustWatchPage from "./pages/mustWatchPage";
 import PopularPeoplePage from "./pages/popularPeoplePage";
 import PersonDetailsPage from "./pages/personDetailsPage";
 import DiscoverTvShowsPage from "./pages/discoverTvShowsPage";
+import TvShowDetailsPage from "./pages/tvShowDetailsPage";
 import CustomContextProvider from "./contexts/customContext";
 
 const queryClient = new QueryClient({
@@ -43,6 +44,7 @@ const App = () => {
               <Route path="/person/:id" component={PersonDetailsPage} />
               <Route path="/movies/:id" component={MoviePage} />
               <Route path="/reviews/:id" component={MovieReviewPage} />
+              <Route path="/tv/:id" component={TvShowDetailsPage} />
               <Route exact path="/" component={DiscoverMoviesPage} />
               <Redirect from="*" to="/"/>
             </Switch>

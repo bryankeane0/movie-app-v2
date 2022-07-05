@@ -9,7 +9,7 @@ import Fab from "@material-ui/core/Fab";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
-import TvShowReviews from "../tvShowReviews ";
+import TvShowReviews from "../tvShowReviews/";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,7 +61,7 @@ const TvShowDetails = ({ tvshow }) => {
         <Chip icon={<AccessTimeIcon />} label={`${tvshow.runtime} min.`} />
         <Chip
           icon={<MonetizationIcon />}
-          label={`${tvshow.revenue.toLocaleString()}`}
+          label={`${tvshow.vote_average.toLocaleString()}`}
         />
         <Chip
           icon={<StarRate />}
