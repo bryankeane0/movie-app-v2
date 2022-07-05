@@ -1,14 +1,13 @@
 import React from "react";
-import MovieCard from "../../components/movies/movieCard";
-import SampleMovie from "./sampleMovieData";
+import TvShowCard from "../../components/tvshows/tvShowCard";
+import SampleTvShow from "./sampleTvShowData";
 import { MemoryRouter } from "react-router";
 import CustomContextProvider from "../../contexts/customContext";
-import { action } from "@storybook/addon-actions";
 import AddToFavoritesIcon from "../../components/cardIcons/addToFavorites";
 
 export default {
-  title: "Movies/MovieCard",
-  component: MovieCard,
+  title: "TvShows/TvShowCard",
+  component: TvShowCard,
   decorators: [
     (Story) => <MemoryRouter initialEntries={["/"]}>{Story()}</MemoryRouter>,
     (Story) => <CustomContextProvider>{Story()}</CustomContextProvider>,
@@ -17,19 +16,19 @@ export default {
 
 export const Basic = () => {
   return (
-    <MovieCard
-      movie={SampleMovie}
-      action={(movie) => <AddToFavoritesIcon movie={movie} />}
-      taging={(movie) => null}
+    <TvShowCard
+      tvshow={SampleTvShow}
+      action={(tvshow) => <AddToFavoritesIcon tvshow={tvshow} />}
+      taging={(tvshow) => null}
     />
   );
 };
 Basic.storyName = "Default";
 
 export const Exceptional = () => {
-  const sampleNoPoster = { ...SampleMovie, poster_path: undefined };
+  const sampleNoPoster = { ...SampleTvShow, poster_path: undefined };
   return (
-    <MovieCard
+    <TvShowCard
       movie={sampleNoPoster}
       action={(movie) => <AddToFavoritesIcon movie={movie} />}
       taging={(movie) => null}

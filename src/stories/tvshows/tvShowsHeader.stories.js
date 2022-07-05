@@ -1,17 +1,17 @@
 import React from "react";
-import MoviesHeader from "../../components/movies/headerMovieList";
+import TvShowHeader from "../../components/tvshows/headerTvShows";
 import { MemoryRouter } from "react-router";
 import CustomContextProvider from "../../contexts/customContext";
 
 export default {
-  title: "Movies/MoviePageHeader",
-  component: MoviesHeader,
+  title: "TvShows/TvShowHeader",
+  component: TvShowHeader,
   decorators: [
     (Story) => <MemoryRouter initialEntries={["/"]}>{Story()}</MemoryRouter>,
     (Story) => <CustomContextProvider>{Story()}</CustomContextProvider>,
   ],
 };
 
-export const Basic = () => <MoviesHeader title="Discover Movies" />;
+export const Basic = () => <TvShowHeader title="Discover TV Shows" />;
 
 Basic.storyName = "Default";

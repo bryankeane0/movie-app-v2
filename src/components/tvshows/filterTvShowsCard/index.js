@@ -11,7 +11,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import img from '../../../images/pexels-dziana-hasanbekava-5480827.jpg';
-import { getMovieGenres } from "../../../api/tmdb-api";
+import { getTvShowGenres } from "../../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../../spinner';
 
@@ -29,9 +29,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const FilterMoviesCard = (props) => {
+const FilterTvShowsCard = (props) => {
   const classes = useStyles();
-  const { data, error, isLoading, isError } = useQuery("genres", getMovieGenres);
+  const { data, error, isLoading, isError } = useQuery("genres", getTvShowGenres);
 
   if (isLoading) {
     return <Spinner />;
@@ -63,7 +63,8 @@ const FilterMoviesCard = (props) => {
       <CardContent>
         <Typography variant="h5" component="h1">
           <SearchIcon fontSize="large" />
-          Filter Movies        </Typography>
+          Filter TV Shows
+        </Typography>
         <TextField
           className={classes.formControl}
           id="filled-search"
@@ -99,7 +100,7 @@ const FilterMoviesCard = (props) => {
       <CardContent>
         <Typography variant="h5" component="h1">
           <SearchIcon fontSize="large" />
-          Filter Movies
+          Filter TV Shows
           <br />
         </Typography>
       </CardContent>
@@ -107,4 +108,4 @@ const FilterMoviesCard = (props) => {
   );
 }
 
-export default FilterMoviesCard;
+export default FilterTvShowsCard;

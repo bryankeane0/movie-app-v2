@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
-import img from '../../../images/film-poster-placeholder.png';
+import img from '../../../images/person-poster-placeholder.jpg';
 import CardContent from "@material-ui/core/CardContent";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -13,7 +13,7 @@ import {Tooltip} from "@material-ui/core";
 import {Zoom} from "@material-ui/core";
 
 const useStyles = makeStyles({
-    card: { maxWidth: 345 },
+    card: { maxWidth: 345},
     media: { height: 500 },
     avatar: {
         backgroundColor: "rgb(255, 0, 0)",

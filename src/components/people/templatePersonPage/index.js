@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import Img from "../../../images/person-poster-placeholder.jpg";
+import img from "../../../images/person-poster-placeholder.jpg";
 import PersonHeader from "../headerPerson";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -31,8 +31,7 @@ const TemplatePersonPage = ({ person, children }) => {
                                 <img
                                     width={"100%"}
                                     src={`https://image.tmdb.org/t/p/w500/${person.profile_path}`}
-                                    alt={Img}
-
+                                    alt={img}
                                 />
                             </CardMedia>
                             <CardContent>

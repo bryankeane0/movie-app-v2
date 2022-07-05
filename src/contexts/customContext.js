@@ -1,38 +1,38 @@
 import React, {useState} from "react";
 
-export const MoviesContext = React.createContext(null);
+export const CustomContext = React.createContext(null);
 
-const MoviesContextProvider = (props) => {
+const CustomContextProvider = (props) => {
     const [myReviews, setMyReviews] = useState({})
     const [favorites, setFavorites] = useState([])
     const [mustwatch, setMustWatch] = useState([])
 
-    const addToFavorites = (movie) => {
-        setFavorites([...favorites, movie.id])
+    const addToFavorites = (item) => {
+        setFavorites([...favorites, item.id])
     };
 
-    const removeFromFavorites = (movie) => {
+    const removeFromFavorites = (item) => {
         setFavorites(favorites.filter(
-            (mId) => mId !== movie.id
+            (itemId) => itemId !== item.id
         ))
     };
 
-    const addToMustWatch = (movie) => {
-        setMustWatch([...mustwatch, movie.id])
+    const addToMustWatch = (item) => {
+        setMustWatch([...mustwatch, item.id])
     };
 
-    const removeFromMustWatch = (movie) => {
+    const removeFromMustWatch = (item) => {
         setMustWatch(mustwatch.filter(
-            (mId) => mId !== movie.id
+            (itemId) => itemId !== item.id
         ))
     };
 
-    const addReview = (movie, review) => {
-        setMyReviews({...myReviews, [movie.id]: review})
+    const addReview = (item, review) => {
+        setMyReviews({...myReviews, [item.id]: review})
     };
 
     return (
-        <MoviesContext.Provider
+        <CustomContext.Provider
             value={{
                 favorites,
                 addToFavorites,
@@ -44,8 +44,8 @@ const MoviesContextProvider = (props) => {
             }}
         >
             {props.children}
-        </MoviesContext.Provider>
+        </CustomContext.Provider>
     );
 };
 
-export default MoviesContextProvider;
+export default CustomContextProvider;

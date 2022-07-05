@@ -2,14 +2,14 @@ import React from "react";
 import PersonCard from "../../components/people/personCard";
 import SamplePerson from "./samplePersonData";
 import { MemoryRouter } from "react-router";
-import MoviesContextProvider from "../../contexts/moviesContext";
+import CustomContextProvider from "../../contexts/customContext";
 
 export default {
     title: "People/PersonCard",
     component: PersonCard,
     decorators: [
         (Story) => <MemoryRouter initialEntries={["/"]}>{Story()}</MemoryRouter>,
-        (Story) => <MoviesContextProvider>{Story()}</MoviesContextProvider>,
+        (Story) => <CustomContextProvider>{Story()}</CustomContextProvider>,
     ],
 };
 
