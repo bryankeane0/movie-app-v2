@@ -11,7 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+import CameraRollIcon from '@mui/icons-material/CameraRoll';
 import { useTheme } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     offset: theme.mixins.toolbar,
+
 }));
 
 const SiteHeader = () => {
@@ -48,11 +49,11 @@ const SiteHeader = () => {
 
     return (
         <AppBar position="fixed">
-            <Container maxWidth="xl">
+            <Container maxWidth="xxl">
                 <Toolbar>
-                    <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                    <CameraRollIcon fontSize={'large'} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography
-                        variant="h6"
+                        variant="h4"
                         noWrap
                         component="a"
                         href="/"
@@ -69,7 +70,7 @@ const SiteHeader = () => {
                         CINEMATIX
                     </Typography>
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }}}>
                         <IconButton
                             size="large"
                             aria-label="account of current user"
@@ -105,7 +106,7 @@ const SiteHeader = () => {
                             ))}
                         </Menu>
                     </Box>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }}}>
                         {pages.map((page) => (
                             <Button
                                 key={page}
@@ -120,7 +121,7 @@ const SiteHeader = () => {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar alt="Remy Sharp" src="" />
                             </IconButton>
                         </Tooltip>
                         <Menu
