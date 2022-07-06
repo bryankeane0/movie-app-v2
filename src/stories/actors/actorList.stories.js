@@ -23,7 +23,7 @@ export const Basic = () => {
     return (
         <Grid container spacing={5}>
             <ActorList
-                actors={Actor}
+                actors={actor}
             />
         </Grid>
     );

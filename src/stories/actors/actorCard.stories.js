@@ -28,7 +28,7 @@ export const Exceptional = () => {
     return (
         <ActorCard
             movie={sampleNoPoster}
-            taging={(movie) => null}
+            taging={(actor) => null}
         />
     );
 };
