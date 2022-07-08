@@ -1,62 +1,79 @@
-import React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import CameraRollIcon from '@mui/icons-material/CameraRoll';
-import { useTheme } from "@material-ui/core/styles";
-import { makeStyles } from "@material-ui/core/styles";
+import React, {useState} from "react";
+import AppBar from "@material-ui/core/AppBar";
+import CameraRollIcon from "@mui/icons-material/CameraRoll";
+import Typography from "@mui/material/Typography";
+import {makeStyles} from "@material-ui/core/styles";
+import Toolbar from "@mui/material/Toolbar";
+import Menu from "@mui/material/Menu";
 import { withRouter } from "react-router-dom";
+import MenuItem from "@material-ui/core/MenuItem";
+import Button from "@mui/material/Button";
+import { useTheme } from "@material-ui/core/styles";
 
-const pages = ['Home', 'Movies', 'TV Shows', 'Actors'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Login'];
 const useStyles = makeStyles((theme) => ({
-    title: {
-        flexGrow: 1,
+    root: {
+        display: "flex",
+        justifyContent: "space-around",
+        flexWrap: "wrap",
+        padding: theme.spacing(1.5),
+        margin: 0,
     },
     offset: theme.mixins.toolbar,
-
 }));
 
-const SiteHeader = () => {
+const SiteHeader = ({history}) => {
     const classes = useStyles();
     const theme = useTheme();
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [moviesAnchorEl, setMoviesAnchorEl] = useState(null);
+    const [showsAnchorEl, setShowsAnchorEl] = useState(null);
+    const [actorsAnchorEl, setActorsAnchorEl] = useState(null);
+    const [moviesOpen, setMoviesOpen] = useState(false);
+    const [showsOpen, setShowsOpen] = useState(false);
+    const [actorsOpen, setActorsOpen] = useState(false);
 
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
+    const handleClose = (type) => {
+        if (type === "movies") {
+            setMoviesOpen(false);
+            setMoviesAnchorEl(null);
+        } else if (type === "shows") {
+            setShowsOpen(false);
+            setShowsAnchorEl(null);
+        } else if (type === "actors") {
+            setActorsOpen(false);
+            setActorsAnchorEl(null);
+        }
     };
 
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
+    const handleClick = (event) => {
+        if (event.currentTarget.id === "movies") {
+            setMoviesAnchorEl(event.currentTarget);
+            setMoviesOpen(true);
+        }
+        else if (event.currentTarget.id === "shows") {
+            setShowsAnchorEl(event.currentTarget);
+            setShowsOpen(true);
+        }
+        else if (event.currentTarget.id === "actors") {
+            setActorsAnchorEl(event.currentTarget);
+            setActorsOpen(true);
+        }
     };
 
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-    };
+    const handleOpen = (path, type) => {
+        history.push(path)
+        handleClose(type);
+    }
 
     return (
-        <AppBar position="fixed">
-            <Container maxWidth="xxl">
+        <>
+            <AppBar position="fixed">
                 <Toolbar>
-                    <CameraRollIcon fontSize={'large'} sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+                    <CameraRollIcon className={classes.icon}/>
                     <Typography
                         variant="h4"
                         noWrap
                         component="a"
-                        href="/"
+                        href="/movies/discover"
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
@@ -69,87 +86,91 @@ const SiteHeader = () => {
                     >
                         CINEMATIX
                     </Typography>
-
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }}}>
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit"
+                    <>
+                        <Button
+                            id={"movies"}
+                            sx={{ color: 'white', fontWeight: 'bold' }}
+                            aria-controls={moviesOpen ? 'demo-positioned-menu' : undefined}
+                            aria-expanded={moviesOpen ? 'true' : undefined}
+                            onClick={handleClick}
                         >
-                            <MenuIcon />
-                        </IconButton>
+                            {"Movies"}
+                        </Button>
                         <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorElNav}
+                            id={"movies-menu"}
+                            open={moviesOpen}
+                            onClose={() => handleClose("movies")}
+                            anchorEl={moviesAnchorEl}
                             anchorOrigin={{
                                 vertical: 'bottom',
                                 horizontal: 'left',
                             }}
-                            keepMounted
                             transformOrigin={{
                                 vertical: 'top',
                                 horizontal: 'left',
                             }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{
-                                display: { xs: 'block', md: 'none' },
-                            }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
-                            ))}
+                            <MenuItem onClick={() => handleOpen("/movies/discover", "movies")}>{"Discover"}</MenuItem>
+                            <MenuItem onClick={() => handleOpen("/movies/upcoming", "movies")}>{"Upcoming"}</MenuItem>
                         </Menu>
-                    </Box>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }}}>
-                        {pages.map((page) => (
-                            <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
-                            >
-                                {page}
-                            </Button>
-                        ))}
-                    </Box>
-
-                    <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="" />
-                            </IconButton>
-                        </Tooltip>
+                        <Button
+                            id={"shows"}
+                            sx={{ color: 'white', fontWeight: 'bold' }}
+                            aria-controls={showsOpen ? 'demo-positioned-menu' : undefined}
+                            aria-expanded={showsOpen ? 'true' : undefined}
+                            onClick={handleClick}
+                        >
+                            {"TV Shows"}
+                        </Button>
                         <Menu
-                            sx={{ mt: '45px' }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
+                            id={"shows-menu"}
+                            open={showsOpen}
+                            onClose={() => handleClose("shows")}
+                            anchorEl={showsAnchorEl}
                             anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
+                                vertical: 'bottom',
+                                horizontal: 'left',
                             }}
-                            keepMounted
                             transformOrigin={{
                                 vertical: 'top',
-                                horizontal: 'right',
+                                horizontal: 'left',
                             }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
+                            <MenuItem onClick={() => handleOpen("/tv/discover", "shows")}>{"Discover"}</MenuItem>
+                            <MenuItem onClick={() => handleOpen("/tv/toprated", "shows")}>{"Top Rated"}</MenuItem>
                         </Menu>
-                    </Box>
+                        <Button
+                            id={"actors"}
+                            sx={{ color: 'white', fontWeight: 'bold' }}
+                            aria-controls={actorsOpen ? 'demo-positioned-menu' : undefined}
+                            aria-expanded={actorsOpen ? 'true' : undefined}
+                            onClick={handleClick}
+                        >
+                            {"Actors"}
+                        </Button>
+                        <Menu
+                            id={"actors-menu"}
+                            open={actorsOpen}
+                            onClose={() => handleClose("actors")}
+                            anchorEl={actorsAnchorEl}
+                            anchorOrigin={{
+                                vertical: 'bottom',
+                                horizontal: 'left',
+                            }}
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'left',
+                            }}
+                        >
+                            <MenuItem onClick={() => handleOpen("/actors/popular", "actors")}>{"Popular"}</MenuItem>
+                            <MenuItem onClick={() => handleOpen("/actors/latest", "actors")}>{"Latest"}</MenuItem>
+                        </Menu>
+                    </>
                 </Toolbar>
-            </Container>
-        </AppBar>
+            </AppBar>
+            <div className={classes.offset} />
+        </>
     );
 };
+
 export default withRouter(SiteHeader);

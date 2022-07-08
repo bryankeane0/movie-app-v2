@@ -35,18 +35,18 @@ const App = () => {
          <CustomContextProvider>
             {" "}
             <Switch>
-              <Route exact path="/actor/popular" component={PopularActorsPage} />
+              <Route exact path="/actors/popular" component={PopularActorsPage} />
               <Route exact path="/reviews/form" component={AddMovieReviewPage} />
               <Route exact path="/movies/upcoming" component={UpcomingMoviesPage}/>
               <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
               <Route exact path="/movies/mustwatch" component={MustWatchPage} />
               <Route exact path="/tv/discover" component={DiscoverTvShowsPage} />
+              <Route exact path="/movies/discover" component={DiscoverMoviesPage} />
               <Route path="/actor/:id" component={ActorDetailsPage} />
               <Route path="/movies/:id" component={MoviePage} />
               <Route path="/reviews/:id" component={MovieReviewPage} />
               <Route path="/tv/:id" component={TvShowDetailsPage} />
-              <Route exact path="/" component={DiscoverMoviesPage} />
-              <Redirect from="*" to="/"/>
+              <Redirect from="*" to="/movies/discover"/>
             </Switch>
           </CustomContextProvider>
       </BrowserRouter>
