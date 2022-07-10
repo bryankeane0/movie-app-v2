@@ -8,7 +8,6 @@ import Menu from "@mui/material/Menu";
 import { withRouter } from "react-router-dom";
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@mui/material/Button";
-import { useTheme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -23,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
 
 const SiteHeader = ({history}) => {
     const classes = useStyles();
-    const theme = useTheme();
     const [moviesAnchorEl, setMoviesAnchorEl] = useState(null);
     const [showsAnchorEl, setShowsAnchorEl] = useState(null);
     const [actorsAnchorEl, setActorsAnchorEl] = useState(null);
