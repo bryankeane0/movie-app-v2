@@ -8,6 +8,9 @@ import Menu from "@mui/material/Menu";
 import { withRouter } from "react-router-dom";
 import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@mui/material/Button";
+import Box from "@material-ui/core/Box";
+import {IconButton} from "@mui/material";
+import Avatar from "@material-ui/core/Avatar";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,9 +28,11 @@ const SiteHeader = ({history}) => {
     const [moviesAnchorEl, setMoviesAnchorEl] = useState(null);
     const [showsAnchorEl, setShowsAnchorEl] = useState(null);
     const [actorsAnchorEl, setActorsAnchorEl] = useState(null);
+    const [settingsAnchorEl, setSettingsAnchorEl] = useState(null);
     const [moviesOpen, setMoviesOpen] = useState(false);
     const [showsOpen, setShowsOpen] = useState(false);
     const [actorsOpen, setActorsOpen] = useState(false);
+    const [settingsOpen, setSettingsOpen] = useState(false);
 
     const handleClose = (type) => {
         if (type === "movies") {
@@ -39,6 +44,9 @@ const SiteHeader = ({history}) => {
         } else if (type === "actors") {
             setActorsOpen(false);
             setActorsAnchorEl(null);
+        } else if (type === "settings") {
+            setSettingsOpen(false);
+            setSettingsAnchorEl(null);
         }
     };
 
@@ -55,6 +63,10 @@ const SiteHeader = ({history}) => {
             setActorsAnchorEl(event.currentTarget);
             setActorsOpen(true);
         }
+        else if (event.currentTarget.id === "settings") {
+            setSettingsAnchorEl(event.currentTarget);
+            setSettingsOpen(true);
+        }
     };
 
     const handleOpen = (path, type) => {
@@ -64,7 +76,7 @@ const SiteHeader = ({history}) => {
 
     return (
         <>
-            <AppBar position="fixed">
+            <AppBar position="fixed" component="nav">
                 <Toolbar>
                     <CameraRollIcon className={classes.icon}/>
                     <Typography
@@ -164,6 +176,31 @@ const SiteHeader = ({history}) => {
                             <MenuItem onClick={() => handleOpen("/actors/latest", "actors")}>{"Latest"}</MenuItem>
                         </Menu>
                     </>
+                    <Box sx={{ marginLeft: "auto" }}>
+                        <IconButton id="settings" onClick={handleClick} sx={{ p: 0 }}>
+                            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                        </IconButton>
+                        <Menu
+                            sx={{ mt: '45px' }}
+                            id="menu-appbar"
+                            anchorEl={settingsAnchorEl}
+                            anchorOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            keepMounted
+                            transformOrigin={{
+                                vertical: 'top',
+                                horizontal: 'right',
+                            }}
+                            open={settingsOpen}
+                            onClose={() => handleClose("settings")}
+                        >
+                            <MenuItem onClick={() => handleOpen("/", "shows")}>{"Settings"}</MenuItem>
+                            <MenuItem onClick={() => handleOpen("/", "shows")}>{"Log In"}</MenuItem>
+                            <MenuItem onClick={() => handleOpen("/", "shows")}>{"Sign Up"}</MenuItem>
+                        </Menu>
+                    </Box>
                 </Toolbar>
             </AppBar>
             <div className={classes.offset} />
