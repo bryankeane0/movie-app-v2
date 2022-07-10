@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import PeopleList from "../personList";
+import ActorsList from "../actorList";
 import Header from "../../movies/headerMovieList";
 
 const useStyles = makeStyles({
@@ -10,7 +10,7 @@ const useStyles = makeStyles({
     },
 });
 
-function PersonListPageTemplate({ people, title }) {
+function ActorListPageTemplate({ actors, title }) {
     const classes = useStyles();
 
     return (
@@ -19,9 +19,9 @@ function PersonListPageTemplate({ people, title }) {
                 <Header title={title} />
             </Grid>
             <Grid item container spacing={5}>
-                <PeopleList people={people}/>
+                <ActorsList actors={actors}/>
             </Grid>
         </Grid>
     );
 }
-export default PersonListPageTemplate;
+export default ActorListPageTemplate;

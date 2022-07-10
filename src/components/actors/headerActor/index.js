@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const PersonHeader = ({ person, history}) => {
+const ActorHeader = ({ actor, history}) => {
     const classes = useStyles();
 
     return (
@@ -26,7 +26,7 @@ const PersonHeader = ({ person, history}) => {
             </IconButton>
 
             <Typography variant="h4" component="h3">
-                {person.name}
+                {actor.name}
                 <br />
             </Typography>
             <IconButton aria-label="go forward" onClick={() => history.goForward() } >
@@ -36,4 +36,4 @@ const PersonHeader = ({ person, history}) => {
     );
 };
 
-export default withRouter(PersonHeader);
+export default withRouter(ActorHeader);

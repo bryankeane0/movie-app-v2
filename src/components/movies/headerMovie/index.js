@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const MovieHeader = ({ movie, history}) => {
+const MovieHeader = ({movie, history}) => {
   const classes = useStyles();
 
   return (
