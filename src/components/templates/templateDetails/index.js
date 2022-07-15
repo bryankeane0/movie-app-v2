@@ -1,15 +1,12 @@
-import React, { useState} from "react";
-import Chip from "@material-ui/core/Chip";
-import Paper from "@material-ui/core/Paper";
-import AccessTimeIcon from "@material-ui/icons/AccessTime";
-import MonetizationIcon from "@material-ui/icons/MonetizationOn";
-import StarRate from "@material-ui/icons/StarRate";
-import NavigationIcon from "@material-ui/icons/Navigation";
-import Fab from "@material-ui/core/Fab";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
 import TvShowReviews from "../tvShowReviews/";
+import {AccessTime, MonetizationOn, Navigation, Typography, Fab, Drawer, Paper, Chip } from "@mui/material";
+import {AccessTime, MonetizationOn, StarRate, Navigation} from "@mui/icons-material";
+import makeStyles from "@mui/styles/makeStyles";
+import React, { useState} from "react";
+import MovieReviews from "../movieReviews";
+import {useQuery} from "react-query";
+import {getImages} from "../../../api/tmdb-api";
+import Spinner from "../../spinner";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const TvShowDetails = ({ tvshow }) => {
+const TemplateDetails = ({ obj }) => {
     const classes = useStyles();
     const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -44,36 +41,36 @@ const TvShowDetails = ({ tvshow }) => {
             </Typography>
             <br/>
             <Typography variant="h6" component="p">
-                {tvshow.overview}
+                {obj.overview}
             </Typography>
 
             <Paper component="ul" className={classes.root}>
                 <li>
                     <Chip label="Genres" className={classes.chip} color="primary" />
                 </li>
-                {tvshow.genres.map((g) => (
+                {obj.genres.map((g) => (
                     <li key={g.name}>
                         <Chip label={g.name} className={classes.chip} />
                     </li>
                 ))}
             </Paper>
             <Paper component="ul" className={classes.root}>
-                <Chip icon={<AccessTimeIcon />} label={`${tvshow.runtime} min.`} />
+                <Chip icon={<AccessTime />} label={`${obj.runtime} min.`} />
                 <Chip
-                    icon={<MonetizationIcon />}
-                    label={`${tvshow.vote_average.toLocaleString()}`}
+                    icon={<MonetizationOn />}
+                    label={`${obj.vote_average.toLocaleString()}`}
                 />
                 <Chip
                     icon={<StarRate />}
-                    label={`${tvshow.vote_average} (${tvshow.vote_count}`}
+                    label={`${obj.vote_average} (${obj.vote_count}`}
                 />
-                <Chip label={`Released: ${tvshow.release_date}`} />
+                <Chip label={`Released: ${obj.release_date}`} />
             </Paper>
             <Paper component="ul" className={classes.root}>
                 <li>
                     <Chip label="Production Countries" className={classes.chip} color="primary" />
                 </li>
-                {tvshow.production_countries.map((c) => (
+                {obj.production_countries.map((c) => (
                     <li key={c.name}>
                         <Chip label={c.name} className={classes.chip} />
                     </li>
@@ -86,14 +83,14 @@ const TvShowDetails = ({ tvshow }) => {
                 onClick={() =>setDrawerOpen(true)}
                 className={classes.fab}
             >
-                <NavigationIcon />
+                <Navigation />
                 Reviews
             </Fab>
             <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-                <TvShowReviews tvshow={tvshow} />
+                <Reviews obj={obj} />
             </Drawer>
         </>
     );
 };
 
-export default TvShowDetails ;
+export default TemplateDetails ;

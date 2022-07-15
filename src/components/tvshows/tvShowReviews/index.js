@@ -8,8 +8,9 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { Link } from "react-router-dom";
-import { getTvShowReviews } from "../../../api/tmdb-api";
+import { getReviews } from "../../../api/tmdb-api";
 import { excerpt } from "../../../util";
+import {useQuery} from "react-query";
 
 const useStyles = makeStyles({
   table: {
@@ -19,15 +20,9 @@ const useStyles = makeStyles({
 
 export default function TvShowReviews({ tvshow }) {
   const classes = useStyles();
-  const [reviews, setReviews] = useState([]);
 
-  useEffect(() => {
-    getTvShowReviews(tvshow.id).then((reviews) => {
-      setReviews(reviews);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  const { data, error, isLoading, isError } = useQuery(["reviews", { id: tvshow.id }, "tvshow"], getReviews);
+    const reviews = data.results
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="reviews table">

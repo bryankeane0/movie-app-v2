@@ -8,10 +8,7 @@ import Spinner from "../components/spinner";
 
 const WriteReviewPage = (props) => {
   const { movieId } = props.location.state;
-  const { data: movie, error, isLoading, isError } = useQuery(
-    ["movie", { id: movieId }, "movie"],
-      getItem
-  );
+  const { data: movie, error, isLoading, isError } = useQuery(["movie", { id: movieId }, "movie"], getItem);
 
   if (isLoading) {
     return <Spinner />;

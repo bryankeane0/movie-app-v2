@@ -8,8 +8,9 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { Link } from "react-router-dom";
-import {getMovieReviews} from "../../../api/tmdb-api";
+import {getReviews} from "../../../api/tmdb-api";
 import {excerpt} from "../../../util";
+import {useQuery} from "react-query";
 
 const useStyles = makeStyles({
   table: {
@@ -17,16 +18,11 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MovieReviews({ movie }) {
+export default function MovieReviews({ obj, type }) {
   const classes = useStyles();
-  const [reviews, setReviews] = useState([]);
 
-  useEffect(() => {
-    getMovieReviews(movie.id).then((reviews) => {
-      setReviews(reviews);
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const { data, error, isLoading, isError } = useQuery(["reviews", { id: obj.id }, type], getReviews);
+  const reviews = data.results
 
   return (
     <TableContainer component={Paper}>

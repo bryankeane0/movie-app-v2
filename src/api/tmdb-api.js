@@ -88,9 +88,11 @@ export const getImages = async ({ queryKey }) => {
  });
 };
 
-export const getMovieReviews = async (id) => {
+export const getReviews = async ({ queryKey }) => {
+  const [, idPart, type] = queryKey;
+  const { id } = idPart;
   return fetch(
-      `${API_URL}/movie/${id}/reviews?api_key=${API_KEY}`
+      `${API_URL}/${type}/${id}/reviews?api_key=${API_KEY}`
   ).then( (response) => {
     if (!response.ok) {
       throw new Error(response.json().message);
@@ -100,19 +102,6 @@ export const getMovieReviews = async (id) => {
     throw error
   });
 }
-
-export const getTvShowReviews = async (id) => {
-  return fetch(
-      `${API_URL}/tv/${id}/reviews?api_key=${API_KEY}`
-  ).then( (response) => {
-    if (!response.ok) {
-      throw new Error(response.json().message);
-    }
-    return response.json();
-  }).catch((error) => {
-    throw error
-  });
-};
 
 export const getUpcomingMovies = async (args) => {
   const [, page] = args.queryKey;
