@@ -31,20 +31,22 @@ const FavoriteMoviesPage = () => {
     return q.data
   });
 
-  return (
-    <PageTemplate
-      title="Favorite Movies"
-      movies={movies}
-      action={(movie) => {
-        return (
-          <>
-            <RemoveFromFavorites movie={movie} />
-            <WriteReview movie={movie} />
-          </>
-        );
-      }}
-    />
-  );
+    return (
+        <>
+            <PageTemplate
+                title="Favorite Movies"
+                movies={movies}
+                action={(movie) => {
+                    return (
+                        <>
+                            <RemoveFromFavorites movie={movie} />
+                            <WriteReview movie={movie} />
+                        </>
+                    );
+                }}
+            />
+        </>
+    );
 };
 
 export default FavoriteMoviesPage;
