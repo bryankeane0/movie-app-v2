@@ -1,5 +1,5 @@
 import express from 'express';
-import uniqid from 'uniqid'
+import uniqid from 'uniqid';
 // eslint-disable-next-line no-unused-vars
 import { movies, movieReviews, movieDetails } from './moviesData';
 
