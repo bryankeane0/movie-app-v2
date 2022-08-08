@@ -21,6 +21,7 @@
     "chokidar": "^3.5.3",
     "core-js": "^3.22.8",
     "dotenv": "^16.0.1",
+    "express-async-handler": "^1.2.0",
     "gh-pages": "^4.0.0",
     "lodash": "^4.17.21",
     "mui-treasury": "^0.1.5-alpha.3",
