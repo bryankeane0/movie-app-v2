@@ -87,10 +87,24 @@ export const getTvShow = async (args) => {
   });
 };
 
-export const getActors = async (args) => {
+export const getPopularActors = async (args) => {
   const [, page] = args.queryKey;
   return fetch(
       `${API_URL}/person/popular?api_key=${API_KEY}&page=${page}`
+  ).then((response) => {
+    if (!response.ok) {
+      throw new Error(response.json().response);
+    }
+    return response.json();
+  }).catch((error) => {
+    throw error
+  });
+};
+
+export const getLatestActors = async (args) => {
+  const [, page] = args.queryKey;
+  return fetch(
+      `${API_URL}/person/latest?api_key=${API_KEY}&page=${page}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(response.json().response);

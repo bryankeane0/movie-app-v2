@@ -17,6 +17,7 @@ import DiscoverTvShowsPage from "./pages/discoverTvShowsPage";
 import TvShowDetailsPage from "./pages/tvShowDetailsPage";
 import CustomContextProvider from "./contexts/customContext";
 import TopRatedTvShowsPage from "./pages/topRatedTvShowsPage";
+import LatestActorsPage from "./pages/latestActorsPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -37,6 +38,7 @@ const App = () => {
                 {" "}
                 <Switch>
                     <Route exact path="/actors/popular" component={PopularActorsPage} />
+                    <Route exact path="/actors/latest" component={LatestActorsPage} />
                     <Route exact path="/reviews/form" component={AddMovieReviewPage} />
                     <Route exact path="/movies/upcoming" component={UpcomingMoviesPage}/>
                     <Route exact path="/movies/favorites" component={FavoriteMoviesPage} />
