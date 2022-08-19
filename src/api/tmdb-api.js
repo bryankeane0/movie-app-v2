@@ -30,11 +30,39 @@ export const getMovie = async (args) => {
  });
 };
 
+export const getUpcomingMovies = async (args) => {
+  const [, page] = args.queryKey;
+  return fetch(
+      `${API_URL}/movie/upcoming?api_key=${API_KEY}&language=en-US&include_adult=false&page=${page}`
+  ).then( (response) => {
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  }).catch((error) => {
+    throw error
+  });
+};
+
 export const getTvShows = async (args) => {
   const [, page] = args.queryKey;
   return fetch(
       `${API_URL}/discover/tv?api_key=${API_KEY}&page=${page}`
   ).then((response) => {
+    if (!response.ok) {
+      throw new Error(response.json().message);
+    }
+    return response.json();
+  }).catch((error) => {
+    throw error
+  });
+};
+
+export const getTopRatedShows = async (args) => {
+  const [, page] = args.queryKey;
+  return fetch(
+      `${API_URL}/tv/top_rated?api_key=${API_KEY}&page=${page}`
+  ).then( (response) => {
     if (!response.ok) {
       throw new Error(response.json().message);
     }
@@ -168,18 +196,4 @@ export const getTvShowReviews = async (id) => {
   }).catch((error) => {
     throw error
   });
-};
-
-export const getUpcomingMovies = async (args) => {
-  const [, page] = args.queryKey;
-  return fetch(
-    `${API_URL}/movie/upcoming?api_key=${API_KEY}&language=en-US&include_adult=false&page=${page}`
-    ).then( (response) => {
-      if (!response.ok) {
-        throw new Error(response.json().message);
-      }
-      return response.json();
-    }).catch((error) => {
-      throw error
-    });
 };
