@@ -19,7 +19,11 @@ router.post('/',asyncHandler( async (req, res, next) => {
         return next();
     }
     if (req.query.action === 'register') {
-        await User.create(req.body);
+        if(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,}$/.test(req.body.password)) {
+            await User.create(req.body);
+        } else {
+            res.status(201).json({code: 201, msg: 'Authentication failed. Password too weak.'});
+        }
         res.status(201).json({code: 201, msg: 'Successful created new user.'});
     } else {
         const user = await User.findByUserName(req.body.username);
@@ -56,7 +60,9 @@ router.post('/:userName/favourites', asyncHandler(async (req, res) => {
     const userName = req.params.userName;
     const movie = await movieModel.findByMovieDBId(newFavourite);
     const user = await User.findByUserName(userName);
-    await user.favourites.push(movie._id);
+    if (user.favourites.includes(movie.id)) {
+        await user.favourites.push(movie._id);
+    }
     await user.save();
     res.status(201).json(user);
 }));
