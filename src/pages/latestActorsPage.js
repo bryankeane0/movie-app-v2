@@ -2,12 +2,12 @@ import React, {useState} from "react";
 import PageTemplate from "../components/actors/templateActorListPage";
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
-import { getPopularActors } from '../api/tmdb-api';
+import { getLatestActors } from '../api/tmdb-api';
 import Pagination from "@mui/material/Pagination";
 
-const PopularActorsPage = (props) => {
+const LatestActorsPage = (props) => {
     const [page, setPage] = useState(1);
-    const { data, error, isLoading, isError }  = useQuery(['popularactors', page], getPopularActors)
+    const { data, error, isLoading, isError }  = useQuery(['latestactors', page], getLatestActors)
 
     if (isLoading) return <Spinner />
     if (isError) return <h1>{error.message}</h1>
@@ -17,7 +17,7 @@ const PopularActorsPage = (props) => {
     return (
         <>
             <PageTemplate
-                title="Popular Actors"
+                title="Latest Actors"
                 actors={actors}
             />
             <Pagination hidePrevButton hideNextButton size="large" count={totalPages} page={page} onChange={(event, newPageNum) => setPage(newPageNum)} />
@@ -25,4 +25,4 @@ const PopularActorsPage = (props) => {
     );
 };
 
-export default PopularActorsPage;
+export default LatestActorsPage;
