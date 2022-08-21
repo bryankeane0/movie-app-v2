@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Header from "../templateHeader";
-import FilterCard from "../filterTvShowsCard";
+import FilterCard from "../templateFilterCard";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import TvShowList from "../tvShowList";
+import TemplateList from "../templateList";
 
 const useStyles = makeStyles({
     root: {
@@ -11,13 +11,13 @@ const useStyles = makeStyles({
     },
 });
 
-function TvShowListPageTemplate({ tvshows, title, action }) {
+function TemplateListPage({ objects, title, action, type }) {
     const classes = useStyles();
     const [nameFilter, setNameFilter] = useState("");
     const [genreFilter, setGenreFilter] = useState("0");
     const genreId = Number(genreFilter);
 
-    let displayedTvShows = tvshows
+    let displayedObjects = objects
         .filter((m) => {
             return m.title !== -1;
         })
@@ -41,11 +41,12 @@ function TvShowListPageTemplate({ tvshows, title, action }) {
                         onUserInput={handleChange}
                         titleFilter={nameFilter}
                         genreFilter={genreFilter}
+                        type={type}
                     />
                 </Grid>
-                <TvShowList action={action} tvshows={displayedTvShows}/>
+                <TemplateList action={action} objects={displayedObjects}/>
             </Grid>
         </Grid>
     );
 }
-export default TvShowListPageTemplate;
+export default TemplateListPage;

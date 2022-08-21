@@ -12,7 +12,7 @@ const useStyles = makeStyles({
 });
 
 
-export default function TvShowCard({ obj, action, type }) {
+export default function TemplateCard({ obj, action, type }) {
     const classes = useStyles();
     const { favorites } = useContext(CustomContext);
     const isPerson = type === "person";

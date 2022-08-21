@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const TemplateMoviePage = ({ obj, children, type }) => {
+const TemplatePage = ({ obj, children, type }) => {
     const classes = useStyles();
     const { data , error, isLoading, isError } = useQuery(["images", { id: obj.id }, type], getImages);
 
@@ -57,4 +57,4 @@ const TemplateMoviePage = ({ obj, children, type }) => {
     );
 };
 
-export default TemplateMoviePage;
+export default TemplatePage;

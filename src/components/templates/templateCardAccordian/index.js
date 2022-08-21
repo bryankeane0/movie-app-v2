@@ -16,7 +16,6 @@ import { Link } from "react-router-dom";
 import { styled } from '@mui/material/styles';
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import _ from "lodash";
 
 const useStyles = makeStyles({
     card: {

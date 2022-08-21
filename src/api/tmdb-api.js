@@ -102,17 +102,3 @@ export const getReviews = async ({ queryKey }) => {
     throw error
   });
 }
-
-export const getUpcomingMovies = async (args) => {
-  const [, page] = args.queryKey;
-  return fetch(
-    `${API_URL}/movie/upcoming?api_key=${API_KEY}&language=en-US&include_adult=false&page=${page}`
-    ).then( (response) => {
-      if (!response.ok) {
-        throw new Error(response.json().message);
-      }
-      return response.json();
-    }).catch((error) => {
-      throw error
-    });
-};

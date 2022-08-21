@@ -1,12 +1,8 @@
-import TvShowReviews from "../tvShowReviews/";
-import {AccessTime, MonetizationOn, Navigation, Typography, Fab, Drawer, Paper, Chip } from "@mui/material";
+import {Typography, Fab, Drawer, Paper, Chip } from "@mui/material";
 import {AccessTime, MonetizationOn, StarRate, Navigation} from "@mui/icons-material";
-import makeStyles from "@mui/styles/makeStyles";
+import { makeStyles } from "@material-ui/core/styles";
 import React, { useState} from "react";
-import MovieReviews from "../movieReviews";
-import {useQuery} from "react-query";
-import {getImages} from "../../../api/tmdb-api";
-import Spinner from "../../spinner";
+import TemplateReviews from "../templateReviews";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -87,7 +83,7 @@ const TemplateDetails = ({ obj }) => {
                 Reviews
             </Fab>
             <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-                <Reviews obj={obj} />
+                <TemplateReviews obj={obj} />
             </Drawer>
         </>
     );

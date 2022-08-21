@@ -1,6 +1,6 @@
 import React from "react";
-import ActorDetails from "../components/actors/actorDetails";
-import PageTemplate from "../components/actors/templateActorPage";
+import TemplateDetails from "../components/templates/templateDetails";
+import PageTemplate from "../components/templates/templatePage";
 import { getItem } from '../api/tmdb-api';
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner';
@@ -17,8 +17,8 @@ const ActorDetailsPage  = (props) => {
         <>
             {actor ? (
                 <>
-                    <PageTemplate actor={actor}>
-                        <ActorDetails actor={actor} />
+                    <PageTemplate obj={actor} type="person">
+                        <TemplateDetails obj={actor} />
                     </PageTemplate>
                 </>
             ) : (

@@ -17,13 +17,11 @@ const useStyles = makeStyles({
     },
 });
 
-export default function MovieReviews({ movie }) {
+export default function TemplateReviews({ obj }) {
     const classes = useStyles();
     const [reviews, setReviews] = useState([]);
 
-    useEffect(() => {
-        getReviews(movie.id).then((reviews) => {
-            setReviews(reviews);
+    useEffect(() => {getReviews(obj.id).then((reviews) => {setReviews(reviews);
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -51,7 +49,7 @@ export default function MovieReviews({ movie }) {
                                         pathname: `/reviews/${r.id}`,
                                         state: {
                                             review: r,
-                                            movie: movie,
+                                            obj: obj,
                                         },
                                     }}
                                 >
