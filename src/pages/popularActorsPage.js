@@ -2,12 +2,12 @@ import React, {useState} from "react";
 import PageTemplate from "../components/actors/templateActorListPage";
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
-import { getPopularActors } from '../api/tmdb-api';
+import { getItems } from '../api/tmdb-api';
 import Pagination from "@mui/material/Pagination";
 
 const PopularActorsPage = (props) => {
     const [page, setPage] = useState(1);
-    const { data, error, isLoading, isError }  = useQuery(['popularactors', page], getPopularActors)
+    const { data, error, isLoading, isError }  = useQuery(['popularactors', "person", "popular", page], getItems)
 
     if (isLoading) return <Spinner />
     if (isError) return <h1>{error.message}</h1>

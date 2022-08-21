@@ -15,10 +15,10 @@ export const discover = async ({ queryKey }) => {
   });
 };
 
-export const getActors = async (args) => {
-  const [, page] = args.queryKey;
+export const getItems = async ({ queryKey }) => {
+  const [, type, section, page] = queryKey;
   return fetch(
-      `${API_URL}/person/popular?api_key=${API_KEY}&page=${page}`
+      `${API_URL}/${type}/${section}?api_key=${API_KEY}&page=${page}`
   ).then((response) => {
     if (!response.ok) {
       throw new Error(response.json().response);
