@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -21,7 +21,7 @@ const useStyles = makeStyles({
 export default function MovieReviews({ obj, type }) {
   const classes = useStyles();
 
-  const { data, error, isLoading, isError } = useQuery(["reviews", { id: obj.id }, type], getReviews);
+  const { data } = useQuery(["reviews", { id: obj.id }, type], getReviews);
   const reviews = data.results
 
   return (
@@ -47,7 +47,7 @@ export default function MovieReviews({ obj, type }) {
                     pathname: `/reviews/${r.id}`,
                     state: {
                       review: r,
-                      movie: movie,
+                      movie: obj,
                     },
                   }}
                 >

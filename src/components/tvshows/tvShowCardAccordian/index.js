@@ -13,7 +13,6 @@ import {makeStyles} from "@material-ui/core/styles";
 import { usePushingGutterStyles } from '@mui-treasury/styles/gutter/pushing';
 import ReadMoreIcon from '@mui/icons-material/ReadMore';
 import { Link } from "react-router-dom";
-import {Divider} from "@mui/material";
 
 const useStyles = makeStyles({
     card: {
