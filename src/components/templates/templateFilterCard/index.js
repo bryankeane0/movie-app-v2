@@ -54,7 +54,7 @@ const TemplateFilterCard = ({ type, genreFilter, onUserInput, titleFilter }) => 
     const handleGenreChange = (e) => {
         handleChange(e, "genre", e.target.value);
     };
-    console.log(type)
+
     const text = (
         type === "movie" ? "Filter Movies" :
         type === "tv" ? "Filter TV Shows" :

@@ -1,8 +1,13 @@
 import {Typography, Fab, Drawer, Paper, Chip } from "@mui/material";
 import {AccessTime, MonetizationOn, StarRate, Navigation} from "@mui/icons-material";
-import { makeStyles } from "@material-ui/core/styles";
+import {Grid, makeStyles} from "@material-ui/core";
 import React, { useState} from "react";
 import TemplateReviews from "../templateReviews";
+import TextInfoContent from '@mui-treasury/components/content/textInfo';
+import Card from "@material-ui/core/Card";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import img from "../../../images/actor-poster-placeholder.jpg";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,20 +31,108 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const TemplateDetails = ({ obj }) => {
+const TemplateDetails = ({ obj, type }) => {
     const classes = useStyles();
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const isPerson = type === "person";
+    let image;
+    type === "person" ? image = obj.profile_path : image = obj.poster_path
+
+    return (
+        <>
+            <Grid item xs={3}>
+                <div className={classes.summary}>
+                    <Card>
+                        <CardMedia>
+                            <img
+                                width={"100%"}
+                                src={`https://image.tmdb.org/t/p/w500/${image}`}
+                                alt={img}
+                            />
+                        </CardMedia>
+                        <CardContent>
+                            <TextInfoContent
+                                heading={
+                                    isPerson ?
+                                        "Known For" :
+                                        ""
+                                }
+                                body={
+                                    isPerson ?
+                                        obj.known_for_department :
+                                        obj.test
+                                }
+                            />
+                            <TextInfoContent
+                                heading={"Gender"}
+                                body={
+                                    actor.gender === 1 ? "Female"
+                                        : actor.gender === 2 ? "Male"
+                                            : "Other"
+                                }
+                            />
+                            <TextInfoContent
+                                heading={"Birthdate"}
+                                body={actor.birthday}
+                            />
+                            <TextInfoContent
+                                heading={"Place of Birth"}
+                                body={actor.place_of_birth}
+                            />
+                            <TextInfoContent
+                                heading={"Also Known As"}
+                                body={actor.also_known_as.map((item) => item).join(', ')}
+                            />
+                        </CardContent>
+                    </Card>
+                </div>
+            </Grid>
+
+            <Grid item xs={9}>
+                <Typography variant="h5" component="h3" className={classes.boldText}>
+                    Biography
+                </Typography>
+                <br/>
+                <Typography variant="h6" component="p">
+                    {actor.biography}
+                </Typography>
+                <br/>
+                <Typography variant="h5" component="h3" className={classes.boldText}>
+                    Movie Credits
+                </Typography>
+
+                <Paper component="ul" className={classes.root}>
+                    <li>
+                        <Chip label="TODO" className={classes.chip} color="primary" />
+                    </li>
+                </Paper>
+            </Grid>
+        </>
+    );
+};
+
+export default TemplateDetails;
+
+const TemplateDetails = ({ obj, type }) => {
+    const classes = useStyles();
+    const [drawerOpen, setDrawerOpen] = useState(false);
+    const isPerson = type === "person";
 
     return (
         <>
             <Typography variant="h5" component="h3" className={classes.boldText}>
-                Overview
+                {isPerson ?
+                    "Biography" :
+                    "Overview"
+                }
             </Typography>
             <br/>
             <Typography variant="h6" component="p">
-                {obj.overview}
+                {isPerson ?
+                    obj.biography :
+                    obj.overview
+                }
             </Typography>
-
             <Paper component="ul" className={classes.root}>
                 <li>
                     <Chip label="Genres" className={classes.chip} color="primary" />
@@ -58,7 +151,7 @@ const TemplateDetails = ({ obj }) => {
                 />
                 <Chip
                     icon={<StarRate />}
-                    label={`${obj.vote_average} (${obj.vote_count}`}
+                    label={`${obj.vote_average} (${obj.vote_count})`}
                 />
                 <Chip label={`Released: ${obj.release_date}`} />
             </Paper>
@@ -72,7 +165,6 @@ const TemplateDetails = ({ obj }) => {
                     </li>
                 ))}
             </Paper>
-
             <Fab
                 color="secondary"
                 variant="extended"
@@ -89,4 +181,4 @@ const TemplateDetails = ({ obj }) => {
     );
 };
 
-export default TemplateDetails ;
+export default TemplateDetails;

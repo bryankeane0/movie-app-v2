@@ -65,6 +65,20 @@ export default function TemplateCardAccordian({ obj, action, type }) {
         return `${value} ${value !== 1 ? 's' : ''}, ${labels[value]}`;
     }
 
+    const getVoteAverage = (type) => {
+        return type / 2
+    }
+
+    const getDetailsLink = (type) => {
+        if(type === "person") {
+            return `/actor/${obj.id}`
+        } else if(type === "tv") {
+            return `/tv/${obj.id}`
+        } else {
+            return `/movies/${obj.id}`
+        }
+    }
+
     return (
         <Accordion
             anchor={"top"}
@@ -76,6 +90,11 @@ export default function TemplateCardAccordian({ obj, action, type }) {
                 id="panel1a-header"
             >
                 <Typography variant="h6" component="h1">
+                    {
+                        type === "person" ?
+                            _.truncate(obj.name, {'length': 28,}) :
+                            _.truncate(obj.title, {'length': 28,})
+                    }
                     {_.truncate(obj.name, {'length': 28,})}
                 </Typography>
             </AccordionSummary>
@@ -86,28 +105,32 @@ export default function TemplateCardAccordian({ obj, action, type }) {
                     mb={1}
                     className={gutterStyles.parent}
                 >
-                    isPerson
-                        ?
-                        <StyledRating
-                            name="rating"
-                            defaultValue={3}
-                            value={obj.popularity / 2}
-                            getLabelText={getLabelText}
-                            //getLabelText={(value) => `${value} Heart${value !== 1 ? 's' : ''}`}
-                            precision={0.5}
-                            icon={<FavoriteIcon fontSize="inherit" />}
-                            emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
-                            readOnly
-                        />
-                        <Typography variant={'body2'} className={classes.rateValue}>
-                            {obj.vote_average / 2}
-                        </Typography>
-                        :
-                        <Rating name={'read-only'} value={obj.vote_average / 2} size={'small'} precision={0.5} readOnly />
-                        <Typography variant={'body2'} className={classes.rateValue}>
-                            {obj.vote_average / 2}
-                        </Typography>
-
+                    {
+                        isPerson ?
+                            <StyledRating
+                                name="rating"
+                                defaultValue={3}
+                                value={
+                                    type === "person" ?
+                                        getVoteAverage(obj.popularity) :
+                                        getVoteAverage(obj.vote_average)
+                                }
+                                getLabelText={getLabelText}
+                                //getLabelText={(value) => `${value} Heart${value !== 1 ? 's' : ''}`}
+                                precision={0.5}
+                                icon={<FavoriteIcon fontSize="inherit" />}
+                                emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
+                                readOnly
+                            /> :
+                            <Rating name={'read-only'} value={obj.vote_average / 2} size={'small'} precision={0.5} readOnly />
+                    }
+                    <Typography variant={'body2'} className={classes.rateValue}>
+                        {
+                            type === "person" ?
+                                getVoteAverage(obj.popularity) :
+                                getVoteAverage(obj.vote_average)
+                        }
+                    </Typography>
                 </Box>
                 <Typography color={'textSecondary'} variant={'body2'}>
                     {isPerson
@@ -122,7 +145,7 @@ export default function TemplateCardAccordian({ obj, action, type }) {
                     alignItems={'center'}
                 >
                     <Box display={'flex'} alignItems={'center'} className={gutterStyles.parent}>
-                        <Link to={`/${type}/${obj.id}`}>
+                        <Link to={getDetailsLink(type)}>
                             <IconButton>
                                 <ReadMoreIcon/>
                             </IconButton>

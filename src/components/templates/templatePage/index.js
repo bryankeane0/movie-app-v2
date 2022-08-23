@@ -32,7 +32,6 @@ const TemplatePage = ({ obj, children, type }) => {
     return (
         <>
             <TemplateHeader obj={obj} />
-
             <Grid container spacing={5} style={{ padding: "15px" }}>
                 <Grid item xs={3}>
                     <div className={classes.root}>

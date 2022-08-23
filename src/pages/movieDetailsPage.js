@@ -1,6 +1,6 @@
 import React from "react";
-import MovieDetails from "../components/movies/movieDetails";
-import PageTemplate from "../components/movies/templateMoviePage";
+import Details from "../components/templates/templateDetails"
+import PageTemplate from "../components/templates/templatePage"
 import { getItem } from '../api/tmdb-api';
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner';
@@ -14,20 +14,16 @@ const MovieDetailsPage = (props) => {
       getItem
   );
 
-  if (isLoading) {
-    return <Spinner />;
-  }
+  if (isLoading) return <Spinner />;
+  if (isError) return <h1>{error.message}</h1>;
 
-  if (isError) {
-    return <h1>{error.message}</h1>;
-  }
 
   return (
     <>
       {movie ? (
         <>
-          <PageTemplate movie={movie}>
-            <MovieDetails movie={movie} />
+          <PageTemplate obj={movie} type="movie">
+            <Details obj={movie} type="movie" />
           </PageTemplate>
         </>
       ) : (

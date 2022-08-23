@@ -2,7 +2,6 @@ import React, {useContext} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
-import img from '../../../images/film-poster-placeholder.png';
 import { CustomContext } from "../../../contexts/customContext";
 import TemplateCardAccordian from "../templateCardAccordian";
 
@@ -21,22 +20,15 @@ export default function TemplateCard({ obj, action, type }) {
         obj.favorite = !!favorites.find((id) => id === obj.id);
     }
 
-    obj.posterPath = function (type) {
-        if(type === 'person') {
-            return 'profile_path';
-        }
-        return 'poster_path';
-    }
+    const imagePath = type === 'person' ?
+        `https://image.tmdb.org/t/p/w500/${obj.profile_path}` :
+        `https://image.tmdb.org/t/p/w500/${obj.poster_path}`
 
     return (
         <Card className={classes.card}>
             <CardMedia
                 className={classes.media}
-                image={
-                    obj.posterPath(type)
-                        ? `https://image.tmdb.org/t/p/w500/${obj.posterPath(type)}`
-                        : img
-                }
+                image={imagePath}
             />
             <TemplateCardAccordian obj={obj} action={action}/>
         </Card>
