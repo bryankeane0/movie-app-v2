@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import AppBar from "@material-ui/core/AppBar";
 import CameraRollIcon from "@mui/icons-material/CameraRoll";
 import Typography from "@mui/material/Typography";
@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import Box from "@material-ui/core/Box";
 import {IconButton} from "@mui/material";
 import Avatar from "@material-ui/core/Avatar";
+import {AuthContext} from "../../contexts/authContext";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SiteHeader = ({history}) => {
     const classes = useStyles();
+    const context = useContext(AuthContext);
     const [moviesAnchorEl, setMoviesAnchorEl] = useState(null);
     const [showsAnchorEl, setShowsAnchorEl] = useState(null);
     const [actorsAnchorEl, setActorsAnchorEl] = useState(null);
@@ -196,9 +198,12 @@ const SiteHeader = ({history}) => {
                             open={settingsOpen}
                             onClose={() => handleClose("settings")}
                         >
-                            <MenuItem onClick={() => handleOpen("/", "shows")}>{"Settings"}</MenuItem>
-                            <MenuItem onClick={() => handleOpen("/", "shows")}>{"Log In"}</MenuItem>
-                            <MenuItem onClick={() => handleOpen("/", "shows")}>{"Sign Up"}</MenuItem>
+                            {
+                                context.isAuthenticated ?
+                                <MenuItem onClick={() => context.signout()}>{"Sign out"}</MenuItem> :
+                                <MenuItem onClick={() => history.push("/login")}>{"Log In"}</MenuItem>
+                            }
+                            <MenuItem onClick={() => handleOpen("/signup", "shows")}>{"Sign Up"}</MenuItem>
                         </Menu>
                     </Box>
                 </Toolbar>
