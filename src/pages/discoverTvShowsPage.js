@@ -1,14 +1,14 @@
 import React, {useState} from "react";
-import PageTemplate from "../components/tvshows/templateTvShowListPage";
+import PageTemplate from "../components/templates/templateListPage";
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
-import {getTvShows} from '../api/tmdb-api';
+import {discover} from '../api/tmdb-api';
 import AddToFavoritesIcon from '../components/cardIcons/addToFavorites';
 import Pagination from '@mui/material/Pagination';
 
 const DiscoverTvShowsPage = (props) => {
     const [page, setPage] = useState(1);
-    const { data, error, isLoading, isError }  = useQuery(['discovertv', page], getTvShows)
+    const { data, error, isLoading, isError }  = useQuery(['discovertv', "tv", page], discover)
 
     if (isLoading) return <Spinner />
     if (isError) return <h1>{error.message}</h1>
@@ -22,10 +22,11 @@ const DiscoverTvShowsPage = (props) => {
         <>
             <PageTemplate
                 title="Discover TV Shows"
-                tvshows={tvshows}
+                objects={tvshows}
                 action={(tvshow) => {
-                    return <AddToFavoritesIcon tvshow={tvshow} />
+                    return <AddToFavoritesIcon obj={tvshow} />
                 }}
+                type="tv"
             />
             <Pagination hidePrevButton hideNextButton size="large" count={totalPages} page={page} onChange={(event, newPageNum) => setPage(newPageNum)} />
         </>
