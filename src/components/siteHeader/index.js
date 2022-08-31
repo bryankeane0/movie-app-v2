@@ -124,6 +124,8 @@ const SiteHeader = ({history}) => {
                         >
                             <MenuItem onClick={() => handleOpen("/movies/discover", "movies")}>{"Discover"}</MenuItem>
                             <MenuItem onClick={() => handleOpen("/movies/upcoming", "movies")}>{"Upcoming"}</MenuItem>
+                            <MenuItem onClick={() => handleOpen("/movies/favourites", "movies")}>{"Favourites"}</MenuItem>
+                            <MenuItem onClick={() => handleOpen("/movies/mustwatch", "movies")}>{"Must Watch"}</MenuItem>
                         </Menu>
                         <Button
                             id={"shows"}
