@@ -1,7 +1,6 @@
-import {Typography, Fab, Drawer, Paper, Chip } from "@mui/material";
+import {Typography} from "@mui/material";
 import {Grid, makeStyles} from "@material-ui/core";
 import React, { useState} from "react";
-import TemplateReviews from "../templateReviews";
 import TextInfoContent from '@mui-treasury/components/content/textInfo';
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -34,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 const TemplateDetails = ({ obj, type }) => {
     const classes = useStyles();
+    // eslint-disable-next-line no-unused-vars
     const [drawerOpen, setDrawerOpen] = useState(false);
     const isPerson = type === "person", isTv = type === "tv", isMovie = type === "movie";
     let image;
