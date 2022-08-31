@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import PageTemplate from "../components/tvshows/templateTvShowListPage";
+import PageTemplate from "../components/templates/templateListPage";
 import { useQuery } from 'react-query';
 import Spinner from '../components/spinner';
 import {discover} from '../api/tmdb-api';
@@ -22,10 +22,11 @@ const DiscoverTvShowsPage = (props) => {
         <>
             <PageTemplate
                 title="Discover TV Shows"
-                tvshows={tvshows}
+                objects={tvshows}
                 action={(tvshow) => {
-                    return <AddToFavoritesIcon tvshow={tvshow} />
+                    return <AddToFavoritesIcon obj={tvshow} />
                 }}
+                type="tv"
             />
             <Pagination hidePrevButton hideNextButton size="large" count={totalPages} page={page} onChange={(event, newPageNum) => setPage(newPageNum)} />
         </>

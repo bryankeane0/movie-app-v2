@@ -3,12 +3,12 @@ import { CustomContext } from "../../contexts/customContext";
 import IconButton from "@material-ui/core/IconButton";
 import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
 
-const AddToMustWatchIcon = ({ movie }) => {
+const AddToMustWatchIcon = ({ obj }) => {
     const context = useContext(CustomContext);
 
     const handleAddToMustWatch = (e) => {
         e.preventDefault();
-        context.addToMustWatch(movie);
+        context.addToMustWatch(obj);
     }
 
     return (

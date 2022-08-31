@@ -31,26 +31,9 @@ const TemplatePage = ({ obj, children, type }) => {
 
     return (
         <>
-            <TemplateHeader obj={obj} />
-            <Grid container spacing={5} style={{ padding: "15px" }}>
-                <Grid item xs={3}>
-                    <div className={classes.root}>
-                        <ImageList rowHeight={500} className={classes.imageList} cols={1}>
-                            {images.map((image) => (
-                                <ImageListItem key={image.file_path} className={classes.imageListItem} cols={1}>
-                                    <img
-                                        src={`https://image.tmdb.org/t/p/w500/${image.file_path}`}
-                                        alt={image.poster_path}
-                                    />
-                                </ImageListItem>
-                            ))}
-                        </ImageList>
-                    </div>
-                </Grid>
-
-                <Grid item xs={9}>
-                    {children}
-                </Grid>
+            <TemplateHeader obj={obj} type={type} />
+            <Grid item xs={9}>
+                {children}
             </Grid>
         </>
     );

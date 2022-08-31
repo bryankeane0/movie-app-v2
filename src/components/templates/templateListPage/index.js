@@ -25,11 +25,6 @@ function TemplateListPage({ objects, title, action, type }) {
             return genreId > 0 ? m.genre_ids.includes(genreId) : true;
         });
 
-    let displayedObjects = objects
-        .filter((m) => {
-            return m.title !== -1;
-        });
-
     const isPerson = type === "person";
 
     const handleChange = (type, value) => {
@@ -45,7 +40,7 @@ function TemplateListPage({ objects, title, action, type }) {
             {
                 isPerson ?
                     <Grid item container spacing={5}>
-                        <TemplateList objects={displayedObjects}/>
+                        <TemplateList objects={objects} type={type}/>
                     </Grid> :
                 <Grid item container spacing={5}>
                     <Grid key="find" item xs={12} sm={6} md={4} lg={3} xl={2}>
@@ -56,7 +51,7 @@ function TemplateListPage({ objects, title, action, type }) {
                             type={type}
                         />
                     </Grid>
-                    <TemplateList action={action} objects={displayedGenredObjects}/>
+                    <TemplateList action={action} objects={displayedGenredObjects} type={type}/>
                 </Grid>
             }
         </Grid>

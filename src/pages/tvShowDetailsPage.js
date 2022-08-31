@@ -1,6 +1,6 @@
 import React from "react";
-import TvShowDetails from "../components/tvshows/tvShowDetails";
-import PageTemplate from "../components/tvshows/templateTvShowPage";
+import TvShowDetails from "../components/templates/templateDetails";
+import PageTemplate from "../components/templates/templatePage";
 import {getItem} from '../api/tmdb-api';
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner';
@@ -16,8 +16,8 @@ const TvShowDetailsPage = (props) => {
         <>
             {tvshow ? (
                 <>
-                    <PageTemplate tvshow={tvshow}>
-                        <TvShowDetails tvshow={tvshow} />
+                    <PageTemplate obj={tvshow} type="tv" >
+                        <TvShowDetails obj={tvshow} type="tv" />
                     </PageTemplate>
                 </>
             ) : (

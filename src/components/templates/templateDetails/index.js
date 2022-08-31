@@ -1,5 +1,4 @@
 import {Typography, Fab, Drawer, Paper, Chip } from "@mui/material";
-import {AccessTime, MonetizationOn, StarRate, Navigation} from "@mui/icons-material";
 import {Grid, makeStyles} from "@material-ui/core";
 import React, { useState} from "react";
 import TemplateReviews from "../templateReviews";
@@ -27,156 +26,150 @@ const useStyles = makeStyles((theme) => ({
         right: theme.spacing(2),
     },
     boldText: {
-        fontWeight: "bold"
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-around",
     }
 }));
 
 const TemplateDetails = ({ obj, type }) => {
     const classes = useStyles();
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const isPerson = type === "person";
+    const isPerson = type === "person", isTv = type === "tv", isMovie = type === "movie";
     let image;
     type === "person" ? image = obj.profile_path : image = obj.poster_path
 
     return (
         <>
-            <Grid item xs={3}>
-                <div className={classes.summary}>
-                    <Card>
-                        <CardMedia>
-                            <img
-                                width={"100%"}
-                                src={`https://image.tmdb.org/t/p/w500/${image}`}
-                                alt={img}
-                            />
-                        </CardMedia>
-                        <CardContent>
-                            <TextInfoContent
-                                heading={
-                                    isPerson ?
-                                        "Known For" :
-                                        ""
+            <Grid container spacing={5} style={{ padding: "15px" }}>
+                <Grid item xs={3}>
+                    <div className={classes.summary}>
+                        <Card>
+                            <CardMedia>
+                                <img
+                                    width={"100%"}
+                                    src={`https://image.tmdb.org/t/p/w500/${image}`}
+                                    alt={img}
+                                />
+                            </CardMedia>
+                            <CardContent>
+                                <TextInfoContent
+                                    heading={
+                                        isPerson ?
+                                            "Known For" :
+                                        isMovie ?
+                                            "Revenue" :
+                                            "Number of Episodes"
+                                    }
+                                    body={
+                                        isPerson ?
+                                            obj.known_for_department :
+                                        isMovie ?
+                                            obj.revenue :
+                                            obj.number_of_episodes
+                                    }
+                                />
+                                <TextInfoContent
+                                    heading={
+                                        isPerson ?
+                                            "Gender" :
+                                        isMovie ?
+                                            "Runtime" :
+                                            "Number of Seasons"
+                                    }
+                                    body={
+                                        isPerson ?
+                                            obj.gender === 1 ? "Female"
+                                                : obj.gender === 2 ? "Male"
+                                                    : "Other"
+                                            :
+                                        isMovie ?
+                                            obj.runtime :
+                                            obj.number_of_seasons
+                                    }
+                                />
+                                <TextInfoContent
+                                    heading={
+                                        isPerson ?
+                                            "Birthdate" :
+                                        isMovie ?
+                                            "Revenue" :
+                                            "Show Status"
+                                    }
+                                    body={
+                                        isPerson ?
+                                            obj.birthday :
+                                        isMovie ?
+                                            obj.revenue :
+                                            obj.status
+                                    }
+                                />
+                                <TextInfoContent
+                                    heading={
+                                        isPerson ?
+                                            "Place of Birth" :
+                                            "Released"
+                                    }
+                                    body={
+                                        isPerson ?
+                                            obj.place_of_birth :
+                                        isTv ?
+                                            obj.first_air_date :
+                                            obj.release_date
+                                    }
+                                />
+                                <TextInfoContent
+                                    heading={
+                                        isPerson ?
+                                            "Also Known As" :
+                                            "Genres"
+                                    }
+                                    body={
+                                        isPerson ?
+                                            obj.also_known_as.map((item) => item).join(', ') :
+                                            obj.genres.map((item) => item.name).join(', ')
+                                    }
+                                />
+                                {
+                                    !isPerson ?
+                                        <TextInfoContent
+                                            heading={"Production Countries"}
+                                            body={obj.production_countries.map((item) => item.name).join(', ')}
+                                        /> :
+                                        null
                                 }
-                                body={
-                                    isPerson ?
-                                        obj.known_for_department :
-                                        obj.test
-                                }
-                            />
-                            <TextInfoContent
-                                heading={"Gender"}
-                                body={
-                                    actor.gender === 1 ? "Female"
-                                        : actor.gender === 2 ? "Male"
-                                            : "Other"
-                                }
-                            />
-                            <TextInfoContent
-                                heading={"Birthdate"}
-                                body={actor.birthday}
-                            />
-                            <TextInfoContent
-                                heading={"Place of Birth"}
-                                body={actor.place_of_birth}
-                            />
-                            <TextInfoContent
-                                heading={"Also Known As"}
-                                body={actor.also_known_as.map((item) => item).join(', ')}
-                            />
-                        </CardContent>
-                    </Card>
-                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </Grid>
+                <Grid item xs={9}>
+                    <Typography variant="h5" component="h3" className={classes.boldText}>
+                        {
+                            isPerson ?
+                                "Biography" :
+                                "Overview"
+                        }
+
+                    </Typography>
+                    <br/>
+                    <Typography variant="h6" component="p">
+                        {
+                            isPerson ?
+                                obj.biography :
+                                obj.overview
+                        }
+                    </Typography>
+                    <br/>
+                    <Typography variant="h5" component="h3" className={classes.boldText}>
+                        {
+                            isPerson ?
+                                "Credits" :
+                                null
+                        }
+                    </Typography>
+                </Grid>
             </Grid>
 
-            <Grid item xs={9}>
-                <Typography variant="h5" component="h3" className={classes.boldText}>
-                    Biography
-                </Typography>
-                <br/>
-                <Typography variant="h6" component="p">
-                    {actor.biography}
-                </Typography>
-                <br/>
-                <Typography variant="h5" component="h3" className={classes.boldText}>
-                    Movie Credits
-                </Typography>
-
-                <Paper component="ul" className={classes.root}>
-                    <li>
-                        <Chip label="TODO" className={classes.chip} color="primary" />
-                    </li>
-                </Paper>
-            </Grid>
-        </>
-    );
-};
-
-export default TemplateDetails;
-
-const TemplateDetails = ({ obj, type }) => {
-    const classes = useStyles();
-    const [drawerOpen, setDrawerOpen] = useState(false);
-    const isPerson = type === "person";
-
-    return (
-        <>
-            <Typography variant="h5" component="h3" className={classes.boldText}>
-                {isPerson ?
-                    "Biography" :
-                    "Overview"
-                }
-            </Typography>
-            <br/>
-            <Typography variant="h6" component="p">
-                {isPerson ?
-                    obj.biography :
-                    obj.overview
-                }
-            </Typography>
-            <Paper component="ul" className={classes.root}>
-                <li>
-                    <Chip label="Genres" className={classes.chip} color="primary" />
-                </li>
-                {obj.genres.map((g) => (
-                    <li key={g.name}>
-                        <Chip label={g.name} className={classes.chip} />
-                    </li>
-                ))}
-            </Paper>
-            <Paper component="ul" className={classes.root}>
-                <Chip icon={<AccessTime />} label={`${obj.runtime} min.`} />
-                <Chip
-                    icon={<MonetizationOn />}
-                    label={`${obj.vote_average.toLocaleString()}`}
-                />
-                <Chip
-                    icon={<StarRate />}
-                    label={`${obj.vote_average} (${obj.vote_count})`}
-                />
-                <Chip label={`Released: ${obj.release_date}`} />
-            </Paper>
-            <Paper component="ul" className={classes.root}>
-                <li>
-                    <Chip label="Production Countries" className={classes.chip} color="primary" />
-                </li>
-                {obj.production_countries.map((c) => (
-                    <li key={c.name}>
-                        <Chip label={c.name} className={classes.chip} />
-                    </li>
-                ))}
-            </Paper>
-            <Fab
-                color="secondary"
-                variant="extended"
-                onClick={() =>setDrawerOpen(true)}
-                className={classes.fab}
-            >
-                <Navigation />
-                Reviews
-            </Fab>
-            <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
-                <TemplateReviews obj={obj} />
-            </Drawer>
         </>
     );
 };

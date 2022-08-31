@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import PageTemplate from '../components/movies/templateMovieListPage'
+import PageTemplate from '../components/templates/templateListPage'
 import { getItems } from "../api/tmdb-api";
 import AddToMustWatchIcon from '../components/cardIcons/addToMustWatch';
 import Spinner from '../components/spinner';
@@ -22,10 +22,11 @@ const UpcomingMoviesPage = (props) => {
         <>
             <PageTemplate
                 title="Upcoming Movies"
-                movies={movies}
-                action={(movie) => {
-                    return <AddToMustWatchIcon movie={movie} />
+                objects={movies}
+                action={(obj) => {
+                    return <AddToMustWatchIcon obj={obj} />
                 }}
+                type="movie"
             />
             <Pagination hidePrevButton hideNextButton size="large" count={totalPages} page={page} onChange={(event, newPageNum) => setPage(newPageNum)} />
         </>

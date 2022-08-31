@@ -30,7 +30,7 @@ export default function TemplateCard({ obj, action, type }) {
                 className={classes.media}
                 image={imagePath}
             />
-            <TemplateCardAccordian obj={obj} action={action}/>
+            <TemplateCardAccordian obj={obj} action={action} type={type}/>
         </Card>
     );
 }

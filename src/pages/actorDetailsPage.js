@@ -18,7 +18,7 @@ const ActorDetailsPage  = (props) => {
             {actor ? (
                 <>
                     <PageTemplate obj={actor} type="person">
-                        <TemplateDetails obj={actor} />
+                        <TemplateDetails obj={actor} type="person" />
                     </PageTemplate>
                 </>
             ) : (

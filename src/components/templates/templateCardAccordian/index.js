@@ -30,11 +30,11 @@ const useStyles = makeStyles({
 });
 
 export default function TemplateCardAccordian({ obj, action, type }) {
-    const _ = require('lodash');
+    const lodash = require('lodash');
     const classes = useStyles();
     const gutterStyles = usePushingGutterStyles({firstExcluded: true});
     const {favorites} = useContext(CustomContext);
-    const isPerson = type === "person";
+    const isPerson = type === "person", isMovie = type === "movie";
     if (!isPerson) {
         obj.favorite = !!favorites.find((id) => id === obj.id);
     }
@@ -91,11 +91,10 @@ export default function TemplateCardAccordian({ obj, action, type }) {
             >
                 <Typography variant="h6" component="h1">
                     {
-                        type === "person" ?
-                            _.truncate(obj.name, {'length': 28,}) :
-                            _.truncate(obj.title, {'length': 28,})
+                        isMovie ?
+                            obj.title :
+                            obj.name
                     }
-                    {_.truncate(obj.name, {'length': 28,})}
                 </Typography>
             </AccordionSummary>
             <AccordionDetails>
@@ -110,11 +109,7 @@ export default function TemplateCardAccordian({ obj, action, type }) {
                             <StyledRating
                                 name="rating"
                                 defaultValue={3}
-                                value={
-                                    type === "person" ?
-                                        getVoteAverage(obj.popularity) :
-                                        getVoteAverage(obj.vote_average)
-                                }
+                                value={obj.popularity / 100}
                                 getLabelText={getLabelText}
                                 //getLabelText={(value) => `${value} Heart${value !== 1 ? 's' : ''}`}
                                 precision={0.5}
@@ -126,16 +121,17 @@ export default function TemplateCardAccordian({ obj, action, type }) {
                     }
                     <Typography variant={'body2'} className={classes.rateValue}>
                         {
-                            type === "person" ?
-                                getVoteAverage(obj.popularity) :
+                            isPerson ?
+                                obj.popularity / 100 :
                                 getVoteAverage(obj.vote_average)
                         }
                     </Typography>
                 </Box>
                 <Typography color={'textSecondary'} variant={'body2'}>
-                    {isPerson
-                        ? _.truncate(obj.biography, {'length': 115})
-                        : _.truncate(obj.overview, {'length': 115})
+                    {
+                        isPerson ?
+                            "" :
+                            lodash.truncate(obj.overview, {'length': 115})
                     }
                 </Typography>
                 <Box
