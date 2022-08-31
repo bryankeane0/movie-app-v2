@@ -1,130 +1,102 @@
-# Cinematix
+_# Cinematix
 [![CI/CD](https://github.com/bryankeane0/movie-app-v2/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/bryankeane0/movie-app-v2/actions/workflows/node.js.yml)
 > By Bryan Keane
 
 ## Overview.
 
-[A brief statement on the content of this repository.]
+This is a react project which utilizes the TMDB API to provide a website for film and television fanatics where the user can view various movies, tv shows, and actors
 
 ### Features.
-[ A bullet-point list of the __new features__ you added to the Movies Fan app (and any modifications to existing features) .]
- 
-+ Feature 1
-+ Feature 2
-+ Feature 3
-+ etc
-+ etc
++ Basic sign up and login authentication via JWT tokens
++ Discover Movies and TV Shows pages
++ Upcoming Movies page 
++ Top Rated TV Shows page
++ Popular Actors and Latest Actors pages
++ Custom, responsive MUI Design
++ Generalised component design, using one custom component instead of 3. Example: templateCard instead of actorCard, movieCard and showCard
++ CI/CD Pipeline on repository
++ Pagination
++ Custom API Routes 
 
 ## Installation Requirements
-
-Describe what needs to be on the machine to run the API (Node v?, NPM, MongoDB instance, any other 3rd party software not in the package.json). 
-
-Describe getting/installing the software, perhaps:
+Installing the software
 
 ```
 git clone https://github.com/bryankeane0/movie-app-v2.git OR git@github.com:bryankeane0/movie-app-v2.git
 ```
 
-followed by installation
+followed by installation from the root directory
 
 ```bat
-git install
+npm install
 ```
 
 ## API Configuration
-Describe any configuration that needs to take place before running the API. For example, creating an ``.env`` and what variables to put in it. Give an example of how this might be structured/done.
-REMEMBER: DON'T PUT YOUR OWN USERNAMES/PASSWORDS/AUTH KEYS IN THE README OR ON GITHUB, just placeholders as indicated below:
 
 ```bat
+REACT_APP_TMDB_KEY=<tmdb_key>
+FAST_REFRESH=false
 NODE_ENV=development
 PORT=8080
-HOST=
-mongoDB=YourMongoURL
-seedDb=true
-secret=YourJWTSecret
+HOST=<host>
+SECRET=<jwt_secret>
+SEED_DB=True
+mongoDB=<mongo_cluster_url>
 ```
 
-## API endpoints.
-
-[ List the __additional__ TMDB endpoints used, giving the description and pathname for each one.] 
-
-e.g.
-+ Discover list of movies - discover/movie
+## API endpoints - Same endpoints for react app and custom API
++ Discover list of movies - /movies/discover
++ Discover list of upcoming movies - /movies/upcoming
 + Movie details - movie/:id
-+ Movie genres = /genre/movie/list
++ Discover list of tv shows - /tv/discover
++ Discover list of top rated tv shows - /tv/toprated
++ TV Show details - tv/:id
++ Discover list of popular actors - /actors/popular
++ Discover list of latest actors - /actors/latest
++ Actor details - actor/:id
++ Login - /login
++ Signup - /signup
 
 ## App Design.
 
-### Component catalogue.
+### Storybook Components.
 
-[ Insert a screenshot from the Storybook UI that lists all the stories for the app's components, and highlight those relating to your __new/modified components__ - see the example screenshot below.] .......
+![img.png](src/images/img.png)
+![img_1.png](src/images/img_1.png)
+![img_2.png](src/images/img_2.png)
+![img_3.png](src/images/img_3.png)
+![img_4.png](src/images/img_4.png)
+![img_5.png](src/images/img_5.png)
+![img_6.png](src/images/img_6.png)
 
-![](./images/storybook.png)
 ### UI Design.
 
-[ Insert screenshots of the __new/modified app pages__ you developed (and modified existing pages), Include an appropriate caption for each one (see example below).
+![img_2.png](src/images/img_12.png)
+![img_1.png](src/images/img_11.png)
+>Shows a list of movies with pagination available at the bottom. Users can navigate and discover movies, add them to favourites. A MUI accordian dropdown is available to show more info and allow the user to go into movie details
 
-![ ](./images/view.png)
+![img.png](src/images/img13.png)
+> Movie details
 
->Shows detailed information on a movie. Clicking the 'Reviews' floating action button will display extracts from critic reviews.
+![img.png](src/images/img3.2.png)
+> Sign in page
+ 
+![img_1.png](src/images/img_13.1.png)
+> Example actor card
 
-![ ](./images/view.png)
+> The other pages are relatively the same as they use similarly designed components with different details and showing other information for tvshows and actors. This can be seen when deploying the app
 
->Shows detailed information on a movie. Clicking the 'Reviews' floating action button will display extracts from critic reviews.
-
-### Routing.
-
-[ List the __new routes__ supported by your app and state the associated page.]
-
-+ /blogs - displays all published blogs.
-+ /blogs/:id - displays a particular blog.
-+ /blogs/:id/comments - detail view of a particular blog and its comments.
-+ etc.
-
-[If relevant, state what aspects of your app are protected (i.e. require authentication) and what is public.]
 
 ## Independent learning (If relevant).
 
-[ Itemize the technologies/techniques you researched independently and adopted in your project, i.e. aspects not covered in the lectures/labs. Include the source code filenames that illustrate these (we do not require code excerpts) and provide references to the online resources that helped you (articles/blogs).
+ - I would say the extent I added MUI components to the front end would be independant learning as I utilised a lot of components not used or mentioned throughout the course using the MUI docs.
+ - I would also like to mention the use of GitHub and the CI/CD pipeline to run code checks and build and deploy the app automatically would also be independant learning as it made development of the app more streamlined.
 
 ## API Design
-Give an overview of your web API design, perhaps similar to the following: 
 
-|  |  GET | POST | PUT | DELETE
-| -- | -- | -- | -- | -- 
-| /api/movies |Gets a list of movies | N/A | N/A |
-| /api/movies/{movieid} | Get a Movie | N/A | N/A | N/A
-| /api/movies/{movieid}/reviews | Get all reviews for movie | Create a new review for Movie | N/A | N/A  
-| ... | ... | ... | ... | ...
-
-If you have your API design on an online platform or graphic, please link to it (e.g. [Swaggerhub](https://app.swaggerhub.com/)).
+> API design is reflected in the same endpoints developed for the react app in `/discover/movies`, `/tv/toprated`, `/actors/popoular` for GETs and the basic GETS POSTS and PUTS from the basic API development from the labs
+> Please see about for the available gets although they are not integreated into the react app, they function with postman
 
 
 ## Security and Authentication
-Give details of authentication/ security implemented on the API(e.g. passport/sessions). Indicate which routes are protected.
-
-## Integrating with React App
-
-Describe how you integrated your React app with the API. Perhaps link to the React App repo and give an example of an API call from React App. For example: 
-
-~~~Javascript
-export const getMovies = () => {
-  return fetch(
-     '/api/movies',{headers: {
-       'Authorization': window.localStorage.getItem('token')
-    }
-  }
-  )
-    .then(res => res.json())
-    .then(json => {return json.results;});
-};
-
-~~~
-
-## Extra features
-
-. . Briefly explain any non-standard features, functional or non-functional, developed for the app.  
-
-## Independent learning
-
-. . State the non-standard aspects of React/Express/Node (or other related technologies) that you researched and applied in this assignment . .  
+- Basic JWT Authentication
