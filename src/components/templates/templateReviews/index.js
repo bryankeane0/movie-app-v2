@@ -10,6 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import { Link } from "react-router-dom";
 import {getReviews} from "../../../api/tmdb-api";
 import {excerpt} from "../../../util";
+import {useQuery} from "react-query";
 
 const useStyles = makeStyles({
     table: {
@@ -17,14 +18,11 @@ const useStyles = makeStyles({
     },
 });
 
-export default function TemplateReviews({ obj }) {
+export default function TemplateReviews({ obj, type }) {
     const classes = useStyles();
-    const [reviews, setReviews] = useState([]);
 
-    useEffect(() => {getReviews(obj.id).then((reviews) => {setReviews(reviews);
-        });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
+    const { data }  = useQuery(['templatereviews', obj.id, type], getReviews)
+    const reviews = data.results;
 
     return (
         <TableContainer component={Paper}>

@@ -1,5 +1,5 @@
 import React from "react";
-import PageTemplate from "../components/movies/templateMoviePage";
+import PageTemplate from "../components/templates/templatePage";
 import ReviewForm from "../components/reviewForm";
 import { withRouter } from "react-router-dom";
 import { useQuery } from "react-query";
@@ -18,7 +18,7 @@ const WriteReviewPage = (props) => {
     return <h1>{error.message}</h1>;
   }
   return (
-    <PageTemplate movie={movie}>
+    <PageTemplate obj={movie} type="movie">
       <ReviewForm movie={movie} />
     </PageTemplate>
   );

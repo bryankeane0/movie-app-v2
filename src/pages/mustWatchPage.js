@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import PageTemplate from "../components/movies/templateMovieListPage";
+import PageTemplate from "../components/templates/templateListPage";
 import { CustomContext } from "../contexts/customContext";
 import { useQueries } from "react-query";
 import { getItem } from "../api/tmdb-api";
@@ -34,7 +34,7 @@ const MustWatchPage = () => {
   return (
     <PageTemplate
       title="Must Watch Movies"
-      movies={movies}
+      objects={movies}
       action={(movie) => {
         return (
           <>
@@ -43,6 +43,7 @@ const MustWatchPage = () => {
           </>
         );
       }}
+      type="movie"
     />
   );
 };
