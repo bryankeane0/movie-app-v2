@@ -4,6 +4,7 @@ import movieModel from './movieModel';
 import asyncHandler from 'express-async-handler';
 // eslint-disable-next-line no-unused-vars
 import { movies, movieReviews, movieDetails } from './moviesData';
+import {getUpcomingMovies} from '../../../src/api/tmdb-api';
 
 const router = express.Router();
 router.get('/', asyncHandler(async (req, res) => {
@@ -62,5 +63,10 @@ router.post('/:id/reviews', (req, res) => {
         });
     }
 });
+
+router.get('/tmdb/upcoming', asyncHandler( async(req, res) => {
+    const upcomingMovies = await getUpcomingMovies();
+    res.status(200).json(upcomingMovies);
+}));
 
 export default router;
