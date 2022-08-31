@@ -3,7 +3,6 @@ import express from 'express';
 import moviesRouter from './api/movies';
 import genresRouter from './api/genres';
 import usersRouter from './api/users';
-import session from 'express-session';
 import passport from './authenticate';
 import './db';
 import './seedData';
